@@ -1,4 +1,4 @@
-package net.davdeo;
+package net.davdeo.itemmagnetmod;
 
 import net.fabricmc.api.ModInitializer;
 

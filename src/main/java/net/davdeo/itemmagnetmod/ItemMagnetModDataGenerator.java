@@ -1,4 +1,4 @@
-package net.davdeo;
+package net.davdeo.itemmagnetmod;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
