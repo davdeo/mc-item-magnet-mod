@@ -1,7 +1,12 @@
 package net.davdeo.itemmagnetmod;
 
+import net.davdeo.itemmagnetmod.item.ModItemGroups;
+import net.davdeo.itemmagnetmod.item.ModItems;
+import net.davdeo.itemmagnetmod.item.custom.ItemMagnetItem;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.minecraft.item.Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +16,7 @@ public class ItemMagnetMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Hello Fabric world!");
+		ModItems.registerModItems();
+		ModItemGroups.registerItemGroups();
 	}
 }
