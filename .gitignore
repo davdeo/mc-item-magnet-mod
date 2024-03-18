@@ -41,3 +41,6 @@ replay_*.log
 
 # psd
 *.psd
+
+# libs
+libs
