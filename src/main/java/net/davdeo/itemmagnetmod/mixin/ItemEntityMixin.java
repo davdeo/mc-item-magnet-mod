@@ -57,9 +57,14 @@ public abstract class ItemEntityMixin extends Entity implements Ownable {
 		// add to velocity depending on how far the items are away -> increased velocity, the closer the items get
 		if (this.target != null && (squaredTargetEyeDistance = (targetEyeVector = new Vec3d(this.target.getX() - thisObj.getX(), this.target.getY() + (double)this.target.getStandingEyeHeight() / 2.0 - thisObj.getY(), this.target.getZ() - thisObj.getZ())).lengthSquared()) < SQUARED_PICKUP_DISTANCE) {
 			double relativeTargetEyeDistance = 1.0 - Math.sqrt(squaredTargetEyeDistance) / PICKUP_DISTANCE;
-			thisObj.setVelocity(thisObj.getVelocity().add(targetEyeVector.normalize().multiply(relativeTargetEyeDistance * relativeTargetEyeDistance * 0.05)));
+			thisObj.setVelocity(thisObj.getVelocity().add(targetEyeVector.normalize().multiply(relativeTargetEyeDistance * relativeTargetEyeDistance * 0.1)));
 		}
-		if (this.target != null) {
+		if (
+			this.target != null &&
+			this.isOnGround() &&
+			this.getVelocity().horizontalLengthSquared() > (double)1.0E-5f &&
+			(this.age + this.getId()) % 4 == 0
+		) {
 			thisObj.move(MovementType.SELF, thisObj.getVelocity());
 		}
 	}
