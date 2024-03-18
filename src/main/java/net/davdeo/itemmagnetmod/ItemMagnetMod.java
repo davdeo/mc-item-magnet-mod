@@ -10,6 +10,16 @@ import net.minecraft.item.Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/*
+ * TODO - Manage durability of magnet
+ * TODO - Add recipe to craft magnet
+ *  	- Add magnet core
+ * 		- Edit loot-tables for magnet core to spawn in chests
+ * TODO - Fix magnet inactive after rejoin of world
+ * TODO - Fix "jumping" of affected items after disable of magnet
+ *
+ */
+
 public class ItemMagnetMod implements ModInitializer {
 	public static final String MOD_ID = "itemmagnetmod";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
