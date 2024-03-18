@@ -1,18 +1,17 @@
 {
 	"schemaVersion": 1,
 	"id": "itemmagnetmod",
-	"version": "${version}",
-	"name": "Item Magnet",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"version": "${0.1}",
+	"name": "Item Magnet Mod",
+	"description": "This mod adds an item magnet to the game. It can be activated / deactivated and looses durability for each item picked up.",
 	"authors": [
 		"davdeo"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/davdeo/mc-item-magnet-mod.git"
 	},
 	"license": "MIT",
-	"icon": "assets/itemmagnetmod/icon.png",
+	"icon": "assets/itemmagnetmod/fabric_icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
