@@ -3,8 +3,6 @@
 	"package": "net.davdeo.itemmagnetmod.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin",
-		"OtherMixin",
 		"ItemEntityMixin"
 	],
 	"injectors": {

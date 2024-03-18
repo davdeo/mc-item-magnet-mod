@@ -15,8 +15,6 @@ public class ModItemGroups {
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.item_magnet"))
                     .icon(() -> new ItemStack(ModItems.ITEM_MAGNET)).entries((displayContext, entries) -> {
                         entries.add(ModItems.ITEM_MAGNET);
-                        entries.add(ModItems.ITEM_MAGNET_BLUE);
-                        entries.add(ModItems.METAL_DETECTOR);
                     }).build());
 
     public static void registerItemGroups() {
