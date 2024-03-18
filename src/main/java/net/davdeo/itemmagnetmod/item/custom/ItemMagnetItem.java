@@ -1,17 +1,18 @@
 package net.davdeo.itemmagnetmod.item.custom;
 
-import net.davdeo.itemmagnetmod.ItemMagnetMod;
+import net.davdeo.itemmagnetmod.event.custom.PickupItemCallback;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 public class ItemMagnetItem extends Item {
-    public boolean getIsActive() {
-        return isActive;
-    }
+    private ItemStack stack;
+    private PlayerEntity player;
 
     private boolean isActive;
 
@@ -19,31 +20,37 @@ public class ItemMagnetItem extends Item {
         super(settings);
 
         this.isActive = false;
+
+        PickupItemCallback.EVENT.register(((player, entity) -> {
+            if (player != this.player || !this.isActive) {
+                return ActionResult.PASS;
+            }
+
+            int numberOfItems = entity.getStack().getCount();
+            this.player.sendMessage(Text.literal("Picked up " + numberOfItems + " items"), false);
+
+            this.stack.damage(numberOfItems, this.player,
+                    playerEntity -> playerEntity.sendToolBreakStatus(playerEntity.getActiveHand())
+            );
+
+            return ActionResult.PASS;
+        }));
+    }
+
+    public boolean getIsActive() {
+        return isActive;
     }
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        ItemStack itemStack = player.getStackInHand(hand);
+        this.stack = player.getStackInHand(hand);
+        this.player = player;
 
         if(!world.isClient()) {
-            ItemMagnetMod.LOGGER.info("Usage");
-
-            if (!this.isActive) {
-                ItemMagnetMod.LOGGER.info("Now Active");
-
-                this.isActive = true;
-
-                itemStack.damage(1, player,
-                        playerEntity -> playerEntity.sendToolBreakStatus(playerEntity.getActiveHand())
-                );
-
-            } else {
-                ItemMagnetMod.LOGGER.info("Now Inactive");
-                this.isActive = false;
-            }
+            this.isActive = !this.isActive;
         }
 
-        return TypedActionResult.success(itemStack, true);
+        return TypedActionResult.success(this.stack, true);
     }
 
     @Override

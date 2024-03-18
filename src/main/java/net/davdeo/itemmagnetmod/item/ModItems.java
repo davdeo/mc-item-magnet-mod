@@ -10,8 +10,8 @@ import net.minecraft.util.Identifier;
 
 public class ModItems {
     public static final Item ITEM_MAGNET = registerItem("item_magnet",
-            new ItemMagnetItem(new FabricItemSettings().maxDamage(64)));
-   
+            new ItemMagnetItem(new FabricItemSettings().maxDamage(1024)));
+
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(ItemMagnetMod.MOD_ID, name), item);
