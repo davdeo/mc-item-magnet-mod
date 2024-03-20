@@ -5,6 +5,10 @@ import net.minecraft.entity.Entity;
 import java.util.List;
 
 public class WorldUtil {
+    private WorldUtil() {
+        super();
+    }
+
     public static final int getClosestEntity(List<? extends Entity> entities, Entity target) {
         int closestIndex = -1;
         float closestDistance = Integer.MAX_VALUE;

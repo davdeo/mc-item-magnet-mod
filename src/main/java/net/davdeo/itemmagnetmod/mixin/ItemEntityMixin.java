@@ -52,7 +52,6 @@ public abstract class ItemEntityMixin extends Entity implements Ownable {
 			|| this.target.squaredDistanceTo(thisObj) > SQUARED_PICKUP_DISTANCE
 			|| this.target != nextTarget
 		) {
-			ItemMagnetMod.LOGGER.info("Updating target " + (nextTarget == null ? ">>to no target<<" : ">>to player<<"));
 			this.target = nextTarget;
 		}
 	}
@@ -101,8 +100,6 @@ public abstract class ItemEntityMixin extends Entity implements Ownable {
 	@Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerInventory;insertStack(Lnet/minecraft/item/ItemStack;)Z"), method = "onPlayerCollision")
 	private boolean onPickup(PlayerInventory instance, ItemStack stack) {
 		PickupItemEvent.EVENT.invoker().onPickup(instance.player, (ItemEntity)(Object)this);
-
-		ItemMagnetMod.LOGGER.info("Redirected insertStack");
 
 		return instance.insertStack(stack);
 	}

@@ -1,63 +1,42 @@
 package net.davdeo.itemmagnetmod.item.custom;
 
-import net.davdeo.itemmagnetmod.event.custom.PickupItemEvent;
-import net.minecraft.entity.ItemEntity;
+import net.davdeo.itemmagnetmod.util.ItemMagnetHelper;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+
 
 public class ItemMagnetItem extends Item {
-    private ItemStack stack;
-    private PlayerEntity player;
-
-    private boolean isActive;
-
     public ItemMagnetItem(Settings settings) {
         super(settings);
-
-        this.isActive = false;
-
-        PickupItemEvent.EVENT.register(this::onPickupEvent);
-    }
-
-    private ActionResult onPickupEvent(PlayerEntity aPlayer, ItemEntity aEntity) {
-        if (aPlayer != this.player || !this.isActive) {
-            return ActionResult.PASS;
-        }
-
-        int numberOfItems = aEntity.getStack().getCount();
-        this.player.sendMessage(Text.literal("Picked up " + numberOfItems + " items"), false);
-
-        this.stack.damage(numberOfItems, this.player,
-                playerEntity -> playerEntity.sendToolBreakStatus(playerEntity.getActiveHand())
-        );
-
-        return ActionResult.PASS;
-    }
-
-    public boolean getIsActive() {
-        return isActive;
     }
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        this.stack = player.getStackInHand(hand);
-        this.player = player;
+        ItemStack stack = player.getStackInHand(hand);
 
         if(!world.isClient()) {
-            this.isActive = !this.isActive;
+            ItemMagnetHelper.toggleIsActive(stack);
         }
 
-        return TypedActionResult.success(this.stack, true);
+        return TypedActionResult.success(stack, true);
     }
 
     @Override
     public boolean hasGlint(ItemStack stack) {
-        return this.isActive;
+        return ItemMagnetHelper.getIsActive(stack);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+         tooltip.add(Text.literal("IsActive: " + ItemMagnetHelper.getIsActive(stack)));
     }
 }

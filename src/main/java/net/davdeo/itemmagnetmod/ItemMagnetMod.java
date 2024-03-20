@@ -1,5 +1,6 @@
 package net.davdeo.itemmagnetmod;
 
+import net.davdeo.itemmagnetmod.event.ModEvents;
 import net.davdeo.itemmagnetmod.item.ModItemGroups;
 import net.davdeo.itemmagnetmod.item.ModItems;
 import net.fabricmc.api.ModInitializer;
@@ -8,12 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /*
- * BUG - Glint / isActive state is set on Item level instead of ItemStack level -> leads to all magnet having the same state
- * 	   - could be solved by using nbt data on stack instead of isActive on Item instance
- * BUG - creating a new magnet has isActive flag set to true
- * 	   - could be solved by solving the other BUG
- * BUG - Fix magnet inactive after rejoin of world
- * 	   - could be solved by solving the other BUG
  * BUG - Fix "jumping" of affected items after disable of magnet
  * 		-> could be connected to merging stacks???
  * BUG - Issue when inventory is full, magnet looses durability until broken but since items cant be picked up the event is triggered multiple times.
@@ -39,5 +34,6 @@ public class ItemMagnetMod implements ModInitializer {
 	public void onInitialize() {
 		ModItems.registerModItems();
 		ModItemGroups.registerItemGroups();
+		ModEvents.registerModEvents();
 	}
 }
