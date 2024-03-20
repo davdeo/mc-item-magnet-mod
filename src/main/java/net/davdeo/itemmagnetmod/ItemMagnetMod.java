@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
  * BUG - Fix magnet inactive after rejoin of world
  * 	   - could be solved by solving the other BUG
  * BUG - Fix "jumping" of affected items after disable of magnet
+ * BUG - Issue when inventory is full, magnet looses durability until broken but since items cant be picked up the event is triggered multiple times.
  *
  * TODO - Add recipe to craft magnet
  *  	- Add magnet core
