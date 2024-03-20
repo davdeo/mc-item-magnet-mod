@@ -1,6 +1,7 @@
 package net.davdeo.itemmagnetmod.item.custom;
 
-import net.davdeo.itemmagnetmod.event.custom.PickupItemCallback;
+import net.davdeo.itemmagnetmod.event.custom.PickupItemEvent;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,20 +22,22 @@ public class ItemMagnetItem extends Item {
 
         this.isActive = false;
 
-        PickupItemCallback.EVENT.register(((player, entity) -> {
-            if (player != this.player || !this.isActive) {
-                return ActionResult.PASS;
-            }
+        PickupItemEvent.EVENT.register(this::onPickupEvent);
+    }
 
-            int numberOfItems = entity.getStack().getCount();
-            this.player.sendMessage(Text.literal("Picked up " + numberOfItems + " items"), false);
-
-            this.stack.damage(numberOfItems, this.player,
-                    playerEntity -> playerEntity.sendToolBreakStatus(playerEntity.getActiveHand())
-            );
-
+    private ActionResult onPickupEvent(PlayerEntity aPlayer, ItemEntity aEntity) {
+        if (aPlayer != this.player || !this.isActive) {
             return ActionResult.PASS;
-        }));
+        }
+
+        int numberOfItems = aEntity.getStack().getCount();
+        this.player.sendMessage(Text.literal("Picked up " + numberOfItems + " items"), false);
+
+        this.stack.damage(numberOfItems, this.player,
+                playerEntity -> playerEntity.sendToolBreakStatus(playerEntity.getActiveHand())
+        );
+
+        return ActionResult.PASS;
     }
 
     public boolean getIsActive() {

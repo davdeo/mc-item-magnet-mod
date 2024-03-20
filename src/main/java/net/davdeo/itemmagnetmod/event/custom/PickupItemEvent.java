@@ -6,11 +6,11 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 
-public interface PickupItemCallback {
-    Event<PickupItemCallback> EVENT = EventFactory.createArrayBacked(PickupItemCallback.class,
-            (listeners) -> (player, entity) -> {
-                for(PickupItemCallback listener : listeners) {
-                    ActionResult result = listener.pickup(player, entity);
+public interface PickupItemEvent {
+    Event<PickupItemEvent> EVENT = EventFactory.createArrayBacked(PickupItemEvent.class,
+            listeners -> (player, entity) -> {
+                for(PickupItemEvent listener : listeners) {
+                    ActionResult result = listener.onPickup(player, entity);
 
                     if (result != ActionResult.PASS) {
                         return result;
@@ -20,5 +20,5 @@ public interface PickupItemCallback {
                 return ActionResult.PASS;
             });
 
-    ActionResult pickup(PlayerEntity player, ItemEntity entity);
+    ActionResult onPickup(PlayerEntity player, ItemEntity entity);
 }
