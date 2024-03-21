@@ -98,9 +98,20 @@ public abstract class ItemEntityMixin extends Entity implements Ownable {
 	 * Event is invoked with the player picking up the item and the stack that is picked up.
 	 */
 	@Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerInventory;insertStack(Lnet/minecraft/item/ItemStack;)Z"), method = "onPlayerCollision")
-	private boolean onPickup(PlayerInventory instance, ItemStack stack) {
-		PickupItemEvent.EVENT.invoker().onPickup(instance.player, (ItemEntity)(Object)this);
+	private boolean redirectedInsertStack(PlayerInventory instance, ItemStack stack) {
+		int stackSizeBeforePickup = stack.getCount();
+		boolean fullyPickedUp = instance.insertStack(stack);
+		int stackSizeAfterPickup = stack.getCount();
 
-		return instance.insertStack(stack);
+		if (stackSizeBeforePickup == stackSizeAfterPickup) {
+			// Only triggered if no item was picked up, therefore fullyPickedUp should always be false here.
+			return fullyPickedUp;
+		}
+
+		int pickedUpItemsCount = stackSizeBeforePickup - stackSizeAfterPickup;
+
+		PickupItemEvent.EVENT.invoker().onPickup(instance.player, pickedUpItemsCount);
+
+		return fullyPickedUp;
 	}
 }

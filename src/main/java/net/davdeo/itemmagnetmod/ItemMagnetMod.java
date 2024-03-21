@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 /*
  * BUG - Fix "jumping" of affected items after disable of magnet
  * 		-> could be connected to merging stacks???
- * BUG - Issue when inventory is full, magnet looses durability until broken but since items cant be picked up the event is triggered multiple times.
  *
  * TODO - Add recipe to craft magnet
  *  	- Add magnet core

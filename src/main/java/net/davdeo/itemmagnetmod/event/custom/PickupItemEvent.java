@@ -11,9 +11,9 @@ import net.minecraft.util.ActionResult;
 
 public interface PickupItemEvent {
     Event<PickupItemEvent> EVENT = EventFactory.createArrayBacked(PickupItemEvent.class,
-            listeners -> (player, entity) -> {
+            listeners -> (player, count) -> {
                 for(PickupItemEvent listener : listeners) {
-                    ActionResult result = listener.onPickup(player, entity);
+                    ActionResult result = listener.onPickup(player, count);
 
                     if (result != ActionResult.PASS) {
                         return result;
@@ -23,9 +23,9 @@ public interface PickupItemEvent {
                 return ActionResult.PASS;
             });
 
-    ActionResult onPickup(PlayerEntity player, ItemEntity entity);
+    ActionResult onPickup(PlayerEntity player, int count);
 
-    static ActionResult onPickupEvent(PlayerEntity player, ItemEntity pickedUpEntity) {
+    static ActionResult onPickupEvent(PlayerEntity player, int pickedUpItemsCount) {
         int activeMagnetInventoryIndex = ItemMagnetHelper.getFirstActiveMagnetInventoryIndex(player);
 
         if (activeMagnetInventoryIndex == -1) {
@@ -33,13 +33,10 @@ public interface PickupItemEvent {
         }
 
         ItemStack activeMagnet = player.getInventory().getStack(activeMagnetInventoryIndex);
-        ItemStack pickedUpStack = pickedUpEntity.getStack();
 
+        player.sendMessage(Text.literal("Picked up " + pickedUpItemsCount + " items"), false);
 
-        int numberOfItems = pickedUpStack.getCount();
-        player.sendMessage(Text.literal("Picked up " + numberOfItems + " items"), false);
-
-        activeMagnet.damage(numberOfItems, player,
+        activeMagnet.damage(pickedUpItemsCount, player,
                 playerEntity -> playerEntity.sendToolBreakStatus(playerEntity.getActiveHand())
         );
 
