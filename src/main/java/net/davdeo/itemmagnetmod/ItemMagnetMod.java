@@ -9,13 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /*
- * BUG - Fix "jumping" of affected items after disable of magnet
+ * TODO BUG - Fix "jumping" of affected items after disable of magnet
  * 		-> could be connected to merging stacks???
  *
  * TODO - Add recipe to craft magnet
  *  	- Add magnet core
  * 		- Edit loot-tables for magnet core to spawn in chests
  * TODO - Prevent magnet from breaking -> convert it to broken magnet upon reaching 1 durability
+ * TODO - Add self made textures
  * TODO - Add different magnet versions
  *  	- Hardened magnet -> more durability (maybe enchant with unbreaking?)
  * 		- Crafter magnet -> auto crafts recipe upon collecting necessary res

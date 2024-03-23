@@ -9,8 +9,17 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
+    private ModItems() {
+        super();
+    }
+
     public static final Item ITEM_MAGNET = registerItem("item_magnet",
             new ItemMagnetItem(new FabricItemSettings().maxDamage(1024)));
+
+    public static final Item ITEM_MAGNET_BROKEN = registerItem("item_magnet_broken",
+            new Item(new FabricItemSettings()));
+    public static final Item MAGNET_CORE = registerItem("magnet_core",
+            new Item(new FabricItemSettings()));
 
 
     private static Item registerItem(String name, Item item) {

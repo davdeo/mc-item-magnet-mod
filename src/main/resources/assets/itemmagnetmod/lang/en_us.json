@@ -1,5 +1,7 @@
 {
   "item.itemmagnetmod.item_magnet": "Item Magnet",
+  "item.itemmagnetmod.item_magnet_broken": "Broken Item Magnet",
+  "item.itemmagnetmod.magnet_core": "Magnet Core",
 
   "itemgroup.item_magnet": "Item Magnet Group"
 }

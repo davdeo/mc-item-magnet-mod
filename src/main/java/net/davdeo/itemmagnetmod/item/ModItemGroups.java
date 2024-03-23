@@ -10,11 +10,17 @@ import net.minecraft.util.Identifier;
 import net.minecraft.text.Text;
 
 public class ModItemGroups {
+    private ModItemGroups() {
+        super();
+    }
+
     public static final ItemGroup ITEM_MAGNET_GROUP = Registry.register(Registries.ITEM_GROUP,
             new Identifier(ItemMagnetMod.MOD_ID, "item_magnet"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.item_magnet"))
                     .icon(() -> new ItemStack(ModItems.ITEM_MAGNET)).entries((displayContext, entries) -> {
                         entries.add(ModItems.ITEM_MAGNET);
+                        entries.add(ModItems.ITEM_MAGNET_BROKEN);
+                        entries.add(ModItems.MAGNET_CORE);
                     }).build());
 
     public static void registerItemGroups() {
