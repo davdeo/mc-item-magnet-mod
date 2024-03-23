@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "item": "itemmagnetmod:item_magnet_broken"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "pattern": [
+    "I I",
+    "CMC",
+    " C "
+  ],
+  "result": {
+    "item": "itemmagnetmod:item_magnet"
+  }
+}
