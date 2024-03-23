@@ -15,9 +15,7 @@ import org.slf4j.LoggerFactory;
  * TODO - Add recipe to craft magnet
  *  	- Add magnet core
  * 		- Edit loot-tables for magnet core to spawn in chests
- * TODO - Prevent magnet from breaking -> convert it to broken magnet upon reaching 1 durability
- * TODO - Add self made textures
- * TODO - Add different magnet versions
+ * TODO - Add different magnet versions -> smithing with template?
  *  	- Hardened magnet -> more durability (maybe enchant with unbreaking?)
  * 		- Crafter magnet -> auto crafts recipe upon collecting necessary res
 * 		- Container magnet  -> has a container (shulker box) attached and moves items into it

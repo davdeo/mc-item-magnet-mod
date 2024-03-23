@@ -1,9 +1,9 @@
 package net.davdeo.itemmagnetmod.event.custom;
 
+import net.davdeo.itemmagnetmod.item.ModItems;
 import net.davdeo.itemmagnetmod.util.ItemMagnetHelper;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -36,9 +36,15 @@ public interface PickupItemEvent {
 
         player.sendMessage(Text.literal("Picked up " + pickedUpItemsCount + " items"), false);
 
+        boolean replaceWithBrokenMagnet = activeMagnet.getMaxDamage() - activeMagnet.getDamage() - pickedUpItemsCount <= 0;
+
         activeMagnet.damage(pickedUpItemsCount, player,
                 playerEntity -> playerEntity.sendToolBreakStatus(playerEntity.getActiveHand())
         );
+
+        if (replaceWithBrokenMagnet) {
+            player.getInventory().setStack(activeMagnetInventoryIndex, new ItemStack(ModItems.ITEM_MAGNET_BROKEN));
+        }
 
         return ActionResult.PASS;
     }
