@@ -17,7 +17,7 @@ public class ModItems {
             new ItemMagnetItem(new FabricItemSettings().maxDamage(1024)));
 
     public static final Item ITEM_MAGNET_BROKEN = registerItem("item_magnet_broken",
-            new Item(new FabricItemSettings()));
+            new Item(new FabricItemSettings().maxCount(1)));
     public static final Item MAGNET_CORE = registerItem("magnet_core",
             new Item(new FabricItemSettings()));
 
