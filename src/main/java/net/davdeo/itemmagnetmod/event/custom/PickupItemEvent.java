@@ -34,8 +34,6 @@ public interface PickupItemEvent {
 
         ItemStack activeMagnet = player.getInventory().getStack(activeMagnetInventoryIndex);
 
-        player.sendMessage(Text.literal("Picked up " + pickedUpItemsCount + " items"), false);
-
         boolean replaceWithBrokenMagnet = activeMagnet.getMaxDamage() - activeMagnet.getDamage() - pickedUpItemsCount <= 0;
 
         activeMagnet.damage(pickedUpItemsCount, player,
