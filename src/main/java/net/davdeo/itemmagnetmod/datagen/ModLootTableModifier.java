@@ -32,7 +32,6 @@ public class ModLootTableModifier {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(numberOfRolls))
                         .conditionally(RandomChanceLootCondition.builder(chance))
-//                        .conditionally(LootCondition) // Play round with different lootConditions
                         .with(ItemEntry.builder(item))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(minAmount, maxAmount)).build());
 
@@ -49,8 +48,8 @@ public class ModLootTableModifier {
 
         registerChestLoot(ANCIENT_CITY_CHEST_ID, 2, 0.35f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
 
-        registerChestLoot(END_CITY_TREASURE_CHEST_ID, 1, 0.35f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        registerChestLoot(END_CITY_TREASURE_CHEST_ID, 1, 0.25f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
 
-        registerChestLoot(STRONGHOLD_LIBRARY_CHEST_ID, 1, 0.25f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        registerChestLoot(STRONGHOLD_LIBRARY_CHEST_ID, 1, 0.35f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
     }
 }
