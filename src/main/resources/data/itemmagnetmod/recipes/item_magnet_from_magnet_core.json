@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "M": {
-      "item": "itemmagnetmod:item_magnet_broken"
+      "item": "itemmagnetmod:magnet_core"
     },
     "I": {
       "item": "minecraft:iron_ingot"
