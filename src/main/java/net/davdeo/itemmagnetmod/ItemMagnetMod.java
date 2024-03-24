@@ -13,9 +13,9 @@ import org.slf4j.LoggerFactory;
  * TODO BUG - Fix "jumping" of affected items after disable of magnet
  * 		-> could be connected to merging stacks???
  *
- * TODO - Add recipe to craft magnet
- *  	- Add magnet core
- * 		- Edit loot-tables for magnet core to spawn in chests
+ * V1.0
+ *
+ * V2.0
  * TODO - Add different magnet versions -> smithing with template?
  *  	- Hardened magnet -> more durability (maybe enchant with unbreaking?)
  * 		- Crafter magnet -> auto crafts recipe upon collecting necessary res
