@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "itemmagnetmod",
-	"version": "${0.1}",
+	"version": "${1.0.0-rc1}",
 	"name": "Item Magnet Mod",
 	"description": "This mod adds an item magnet to the game. It can be activated / deactivated and looses durability for each item picked up.",
 	"authors": [
