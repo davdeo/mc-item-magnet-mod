@@ -15,6 +15,9 @@ The Item Magnet is intended to be a late game item, therefore it is not easy to 
 * Restart the IDE.
 * You're all set.
 
+## Feedback
+TODO
+
 ## Credits
 
 Many thanks to Kaupenjoe for his extensive tutorials on youtube. They helped me a great deal getting into modding. [Youtube](https://www.youtube.com/@ModdingByKaupenjoe) / [Courses](https://courses.kaupenjoe.net/)
