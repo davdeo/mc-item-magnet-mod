@@ -44,7 +44,7 @@ jobs:
         run: ./gradlew clean build
 
       - name: Publish (CurseForge/Modrinth/GitHub)
-        uses: Kir-Antipov/mc-publish@v3.2                                   #The specified MC-Publish GitHub Action in the version 3.2
+        uses: Kir-Antipov/mc-publish@v3.3                                   #The specified MC-Publish GitHub Action in the version 3.2
         with:
           #curseforge-id: 992847
           #curseforge-token: "${{env.CURSEFORGE_TOKEN}}"
