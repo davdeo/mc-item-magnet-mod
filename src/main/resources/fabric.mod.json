@@ -11,7 +11,7 @@
 		"sources": "https://github.com/davdeo/mc-item-magnet-mod.git"
 	},
 	"license": "MIT",
-	"icon": "assets/itemmagnetmod/fabric_icon.png",
+	"icon": "assets/itemmagnetmod/mod_icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
