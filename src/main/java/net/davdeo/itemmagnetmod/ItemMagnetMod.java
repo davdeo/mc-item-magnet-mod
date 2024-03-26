@@ -10,14 +10,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /*
- * TODO BUG - Fix "jumping" of affected items after disable of magnet
- * 		-> could be connected to merging stacks???
- *
  * V1.0
  * TODO - publish on
  *  	- Forge
  * 		- Modrinth
  *
+ * V1.1
+ * TODO - auto disable magnet when inventory is full
  *
  * V2.0
  * TODO - Add different magnet versions -> smithing with template?
