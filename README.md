@@ -16,7 +16,7 @@ The Item Magnet is intended to be a late game item, therefore it is not easy to 
 * You're all set.
 
 ## Feedback
-TODO
+For feedback, bug reports and discussions on the mod please visit [Discussions](https://github.com/davdeo/mc-item-magnet-mod/discussions) and [Issues](https://github.com/davdeo/mc-item-magnet-mod/issues) on GitHub.
 
 ## Credits
 
