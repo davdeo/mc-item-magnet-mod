@@ -46,11 +46,11 @@ jobs:
       - name: Publish (CurseForge/Modrinth/GitHub)
         uses: Kir-Antipov/mc-publish@v3.3                                   #The specified MC-Publish GitHub Action in the version 3.2
         with:
-          #curseforge-id: 992847
-          #curseforge-token: "${{env.CURSEFORGE_TOKEN}}"
+          curseforge-id: 992847
+          curseforge-token: "${{env.CURSEFORGE_TOKEN}}"
 
-          #modrinth-id: V9obxUzB
-          #modrinth-token: "${{env.MODRINTH_TOKEN}}"
+          modrinth-id: V9obxUzB
+          modrinth-token: "${{env.MODRINTH_TOKEN}}"
 
           github-tag: "v${{env.VERSION}}-${{env.MINECRAFT_VERSION}}"
           github-token: "${{env.GITHUB_TOKEN}}"
