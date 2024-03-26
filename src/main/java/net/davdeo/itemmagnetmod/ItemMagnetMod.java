@@ -14,6 +14,12 @@ import org.slf4j.LoggerFactory;
  * 		-> could be connected to merging stacks???
  *
  * V1.0
+ * TODO - Reduce probability in end_city
+ * TODO - Reduce probability in library (0.1?)
+ * TODO - publish on
+ *  	- Forge
+ * 		- Modrinth
+ *
  *
  * V2.0
  * TODO - Add different magnet versions -> smithing with template?
@@ -23,6 +29,7 @@ import org.slf4j.LoggerFactory;
  * 		- Ranged magnet -> More range
  * 		- Ender magnet -> Directly inserts items into the inventory
  *
+ * TODO - Reduce distance and durability if there are upgraded versions.
  */
 
 public class ItemMagnetMod implements ModInitializer {
