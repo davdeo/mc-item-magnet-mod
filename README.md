@@ -19,5 +19,7 @@ The Item Magnet is intended to be a late game item, therefore it is not easy to 
 
 Many thanks to Kaupenjoe for his extensive tutorials on youtube. They helped me a great deal getting into modding. [Youtube](https://www.youtube.com/@ModdingByKaupenjoe) / [Courses](https://courses.kaupenjoe.net/)
 
+Another helpful resource was the fabric wiki which also provides a few very helpful examples [Fabric Wiki](https://fabricmc.net/wiki/start/)
+
 ## Licence
 Read more [here](./LICENCE.md)
