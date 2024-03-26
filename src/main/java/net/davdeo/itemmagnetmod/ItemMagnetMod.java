@@ -14,8 +14,6 @@ import org.slf4j.LoggerFactory;
  * 		-> could be connected to merging stacks???
  *
  * V1.0
- * TODO - Reduce probability in end_city
- * TODO - Reduce probability in library (0.1?)
  * TODO - publish on
  *  	- Forge
  * 		- Modrinth
