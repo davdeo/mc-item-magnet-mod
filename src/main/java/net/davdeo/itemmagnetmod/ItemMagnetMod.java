@@ -9,26 +9,6 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/*
- * V1.0
- * TODO - publish on
- *  	- Forge
- * 		- Modrinth
- *
- * V1.1
- * TODO - auto disable magnet when inventory is full
- *
- * V2.0
- * TODO - Add different magnet versions -> smithing with template?
- *  	- Hardened magnet -> more durability (maybe enchant with unbreaking?)
- * 		- Crafter magnet -> auto crafts recipe upon collecting necessary res
-* 		- Container magnet  -> has a container (shulker box) attached and moves items into it
- * 		- Ranged magnet -> More range
- * 		- Ender magnet -> Directly inserts items into the inventory
- *
- * TODO - Reduce distance and durability if there are upgraded versions.
- */
-
 public class ItemMagnetMod implements ModInitializer {
 	public static final String MOD_ID = "itemmagnetmod";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
