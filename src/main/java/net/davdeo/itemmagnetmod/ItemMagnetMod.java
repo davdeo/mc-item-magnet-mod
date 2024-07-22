@@ -1,5 +1,6 @@
 package net.davdeo.itemmagnetmod;
 
+import net.davdeo.itemmagnetmod.component.ModComponents;
 import net.davdeo.itemmagnetmod.datagen.ModLootTableModifier;
 import net.davdeo.itemmagnetmod.event.ModEvents;
 import net.davdeo.itemmagnetmod.item.ModItemGroups;
@@ -17,6 +18,7 @@ public class ItemMagnetMod implements ModInitializer {
 	public void onInitialize() {
 		ModItems.registerModItems();
 		ModItemGroups.registerItemGroups();
+		ModComponents.registerComponents();
 
 		ModEvents.registerModEvents();
 

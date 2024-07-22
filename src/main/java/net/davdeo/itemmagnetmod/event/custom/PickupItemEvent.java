@@ -6,7 +6,6 @@ import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 
 public interface PickupItemEvent {
@@ -36,9 +35,15 @@ public interface PickupItemEvent {
 
         boolean replaceWithBrokenMagnet = activeMagnet.getMaxDamage() - activeMagnet.getDamage() - pickedUpItemsCount <= 0;
 
-        activeMagnet.damage(pickedUpItemsCount, player,
-                playerEntity -> playerEntity.sendToolBreakStatus(playerEntity.getActiveHand())
-        );
+        // TODO Fix magnet durability loss
+//        activeMagnet.damage(
+//                pickedUpItemsCount,
+//                player.getWorld(),
+//                player,
+//                item -> {
+//                    LOGGER.debug("hi");
+//                }
+//        );
 
         if (replaceWithBrokenMagnet) {
             player.getInventory().setStack(activeMagnetInventoryIndex, new ItemStack(ModItems.ITEM_MAGNET_BROKEN));
