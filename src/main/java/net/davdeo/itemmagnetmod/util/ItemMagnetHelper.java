@@ -1,12 +1,10 @@
 package net.davdeo.itemmagnetmod.util;
 
-import net.davdeo.itemmagnetmod.ItemMagnetMod;
+import net.davdeo.itemmagnetmod.component.ModComponents;
 import net.davdeo.itemmagnetmod.item.ModItems;
-import net.davdeo.itemmagnetmod.nbt.NbtKeys;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -30,7 +28,7 @@ public class ItemMagnetHelper {
         return -1;
     }
 
-    public static final PlayerEntity getClosestPlayerWithActiveMagnet(World world, Entity target) {
+    public static PlayerEntity getClosestPlayerWithActiveMagnet(World world, Entity target) {
         List<? extends  PlayerEntity> playersWithActiveMagnet = world.getPlayers().stream().filter(playerEntity -> {
             int magnetInventoryPosition = ItemMagnetHelper.getFirstActiveMagnetInventoryIndex(playerEntity);
 
@@ -53,24 +51,13 @@ public class ItemMagnetHelper {
     }
 
 
-    public static final void toggleIsActive(ItemStack stack) {
-        NbtCompound nbtData = stack.getOrCreateNbt();
+    public static void toggleIsActive(ItemStack stack) {
+        boolean isActive = ItemMagnetHelper.getIsActive(stack);
 
-        boolean isActive = false;
-        if (nbtData.contains(NbtKeys.ITEM_MAGNET_ITEM_IS_ACTIVE)) {
-            isActive = nbtData.getBoolean(NbtKeys.ITEM_MAGNET_ITEM_IS_ACTIVE);
-        }
-
-        nbtData.putBoolean(NbtKeys.ITEM_MAGNET_ITEM_IS_ACTIVE, !isActive);
-
-        stack.setNbt(nbtData);
+        stack.set(ModComponents.ITEM_MAGNET_ITEM_IS_ACTIVE_COMPONENT, !isActive);
     }
 
-    public static final boolean getIsActive(ItemStack stack) {
-        if (stack.hasNbt() && stack.getNbt().contains(NbtKeys.ITEM_MAGNET_ITEM_IS_ACTIVE)) {
-            return stack.getNbt().getBoolean(NbtKeys.ITEM_MAGNET_ITEM_IS_ACTIVE);
-        }
-
-        return false;
+    public static boolean getIsActive(ItemStack stack) {
+        return stack.getOrDefault(ModComponents.ITEM_MAGNET_ITEM_IS_ACTIVE_COMPONENT, false);
     }
 }

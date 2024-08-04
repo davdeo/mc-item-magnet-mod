@@ -1,5 +1,8 @@
 {
   "item.itemmagnetmod.item_magnet": "Item Magnet",
+  "item.itemmagnetmod.item_magnet.active": "Active",
+  "item.itemmagnetmod.item_magnet.not_active": "Inactive",
+
   "item.itemmagnetmod.item_magnet_broken": "Broken Item Magnet",
   "item.itemmagnetmod.magnet_core": "Magnet Core",
 
