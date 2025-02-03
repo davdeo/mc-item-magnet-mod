@@ -15,7 +15,7 @@ public class ModItemGroups {
     }
 
     public static final ItemGroup ITEM_MAGNET_GROUP = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(ItemMagnetMod.MOD_ID, "item_magnet"),
+            Identifier.of(ItemMagnetMod.MOD_ID, "item_magnet"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.item_magnet"))
                     .icon(() -> new ItemStack(ModItems.ITEM_MAGNET)).entries((displayContext, entries) -> {
                         entries.add(ModItems.ITEM_MAGNET);

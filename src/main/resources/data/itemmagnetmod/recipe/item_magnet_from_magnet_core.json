@@ -18,6 +18,7 @@
     " C "
   ],
   "result": {
-    "item": "itemmagnetmod:item_magnet"
+    "count": 1,
+    "id": "itemmagnetmod:item_magnet"
   }
 }

@@ -1,10 +1,12 @@
 {
-  "type": "minecraft:blasting",
+  "type": "minecraft:smelting",
   "category": "equipment",
-  "cookingtime": 100,
+  "cookingtime": 200,
   "experience": 0,
   "ingredient": {
     "item": "itemmagnetmod:item_magnet_broken"
   },
-  "result":  "itemmagnetmod:magnet_core"
+  "result":  {
+    "id": "itemmagnetmod:magnet_core"
+  }
 }

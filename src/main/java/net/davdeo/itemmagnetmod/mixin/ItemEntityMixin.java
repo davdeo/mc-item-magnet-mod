@@ -1,6 +1,5 @@
 package net.davdeo.itemmagnetmod.mixin;
 
-import net.davdeo.itemmagnetmod.ItemMagnetMod;
 import net.davdeo.itemmagnetmod.event.custom.PickupItemEvent;
 import net.davdeo.itemmagnetmod.util.ItemMagnetHelper;
 import net.minecraft.entity.*;
@@ -61,8 +60,26 @@ public abstract class ItemEntityMixin extends Entity implements Ownable {
 	 * Method is responsible for updating the target every 20 ticks and moving the ItemEntity towards the target.
 	 * The velocity towards the target is getting higher the closer the entity is to the target.
 	 * The logic used here is inspired by the behaviour of the ExperienceOrbEntity.
+	 *
+	 *  public void tick() {
+	 * ...
+	 * 		this.prevX = this.getX();
+	 * 		this.prevY = this.getY();
+	 * 		this.prevZ = this.getZ();
+	 * 		Vec3d vec3d = this.getVelocity();
+	 *
+	 * ---> Inject here. After call to getVelocity and before applying any movement
+	 *
+	 *      if (this.isTouchingWater() && this.getFluidHeight(FluidTags.WATER) > 0.10000000149011612) {
+	 *          this.applyWaterBuoyancy();
+	 *      } else if (this.isInLava() && this.getFluidHeight(FluidTags.LAVA) > 0.10000000149011612) {
+	 *          this.applyLavaBuoyancy();
+	 *      } else {
+	 *          this.applyGravity();
+	 *      }
+	 * ...
 	 */
-	@Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ItemEntity;getStandingEyeHeight()F"))
+	@Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ItemEntity;isTouchingWater()Z"))
 	private void moveToTarget(CallbackInfo info) {
 		ItemEntity thisObj = (ItemEntity)(Object)this;
 

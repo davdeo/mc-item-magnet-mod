@@ -1,55 +1,47 @@
 package net.davdeo.itemmagnetmod.datagen;
 
 import net.davdeo.itemmagnetmod.item.ModItems;
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.item.Item;
 import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.LootTables;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.util.Identifier;
+import net.minecraft.registry.RegistryKey;
 
 public class ModLootTableModifier {
     private ModLootTableModifier() {
         super();
     }
 
-    private static final String MINECRAFT_NAMESPACE = "minecraft";
-    private static final Identifier BASTION_TREASURE_CHEST_ID = new Identifier(MINECRAFT_NAMESPACE, "chests/bastion_treasure");
-    private static final Identifier BASTION_BRIDGE_CHEST_ID = new Identifier(MINECRAFT_NAMESPACE, "chests/bastion_bridge");
-    private static final Identifier BASTION_HOGLIN_STABLE_CHEST_ID = new Identifier(MINECRAFT_NAMESPACE, "chests/bastion_hoglin_stable");
-    private static final Identifier BASTION_OTHER_CHEST_ID = new Identifier(MINECRAFT_NAMESPACE, "chests/bastion_other");
-    private static final Identifier ANCIENT_CITY_CHEST_ID = new Identifier(MINECRAFT_NAMESPACE, "chests/ancient_city");
-    private static final Identifier END_CITY_TREASURE_CHEST_ID = new Identifier(MINECRAFT_NAMESPACE, "chests/end_city_treasure");
-    private static final Identifier STRONGHOLD_LIBRARY_CHEST_ID = new Identifier(MINECRAFT_NAMESPACE, "chests/stronghold_library");
-
-
-    private static void registerChestLoot(Identifier identifier, int numberOfRolls, float chance, float minAmount, float maxAmount, Item item) {
-        LootTableEvents.MODIFY.register(((resourceManager, lootManager, id, tableBuilder, source) -> {
-            if (identifier.equals(id)) {
+    private static void registerChestLoot(RegistryKey<LootTable> structure, int numberOfRolls, float chance, float minAmount, float maxAmount, Item item) {
+        LootTableEvents.MODIFY.register(((id, tableBuilder, source, x) -> {
+            if (source.isBuiltin() && structure.equals(id)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(numberOfRolls))
                         .conditionally(RandomChanceLootCondition.builder(chance))
                         .with(ItemEntry.builder(item))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(minAmount, maxAmount)).build());
 
-                tableBuilder.pool(poolBuilder.build());
+                tableBuilder.pool(poolBuilder);
             }
         }));
     }
 
     public static void modifyLootTables() {
-        registerChestLoot(BASTION_TREASURE_CHEST_ID, 2, 0.35f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
-        registerChestLoot(BASTION_BRIDGE_CHEST_ID, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
-        registerChestLoot(BASTION_HOGLIN_STABLE_CHEST_ID, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
-        registerChestLoot(BASTION_OTHER_CHEST_ID, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        registerChestLoot(LootTables.BASTION_TREASURE_CHEST, 2, 0.35f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        registerChestLoot(LootTables.BASTION_BRIDGE_CHEST, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        registerChestLoot(LootTables.BASTION_HOGLIN_STABLE_CHEST, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        registerChestLoot(LootTables.BASTION_OTHER_CHEST, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
 
-        registerChestLoot(ANCIENT_CITY_CHEST_ID, 1, 0.35f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        registerChestLoot(LootTables.ANCIENT_CITY_CHEST, 1, 0.35f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
 
-        registerChestLoot(END_CITY_TREASURE_CHEST_ID, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        registerChestLoot(LootTables.END_CITY_TREASURE_CHEST, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
 
-        registerChestLoot(STRONGHOLD_LIBRARY_CHEST_ID, 1, 0.1f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        registerChestLoot(LootTables.STRONGHOLD_LIBRARY_CHEST, 1, 0.1f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
     }
 }
