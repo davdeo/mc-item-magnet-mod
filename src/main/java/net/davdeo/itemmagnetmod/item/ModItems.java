@@ -6,6 +6,8 @@ import net.davdeo.itemmagnetmod.item.custom.ItemMagnetItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
@@ -13,22 +15,40 @@ public class ModItems {
         super();
     }
 
-    public static final Item ITEM_MAGNET = registerItem("item_magnet",
+    public static final RegistryKey<Item> ITEM_MAGNET_KEY = RegistryKey.of(
+            RegistryKeys.ITEM,
+            Identifier.of(ItemMagnetMod.MOD_ID, "item_magnet"));
+    public static final Item ITEM_MAGNET = registerItem(
             new ItemMagnetItem(
                     new Item.Settings()
+                            .registryKey(ITEM_MAGNET_KEY)
                             .maxDamage(1024)
                             .component(ModComponents.ITEM_MAGNET_ITEM_IS_ACTIVE_COMPONENT, false)
-            )
+            ),
+            ITEM_MAGNET_KEY
     );
 
-    public static final Item ITEM_MAGNET_BROKEN = registerItem("item_magnet_broken",
-            new Item(new Item.Settings().maxCount(1)));
-    public static final Item MAGNET_CORE = registerItem("magnet_core",
-            new Item(new Item.Settings().maxCount(1)));
+    public static final RegistryKey<Item> ITEM_MAGNET_BROKEN_KEY = RegistryKey.of(
+            RegistryKeys.ITEM,
+            Identifier.of(ItemMagnetMod.MOD_ID, "item_magnet_broken"));
+    public static final Item ITEM_MAGNET_BROKEN = registerItem(
+            new Item(new Item.Settings()
+                    .registryKey(ITEM_MAGNET_BROKEN_KEY)
+                    .maxCount(1)),
+            ITEM_MAGNET_BROKEN_KEY);
+
+    public static final RegistryKey<Item> MAGNET_CORE_KEY = RegistryKey.of(
+            RegistryKeys.ITEM,
+            Identifier.of(ItemMagnetMod.MOD_ID, "magnet_core"));
+    public static final Item MAGNET_CORE = registerItem(
+            new Item(new Item.Settings()
+                    .registryKey(MAGNET_CORE_KEY)
+                    .maxCount(1)),
+            MAGNET_CORE_KEY);
 
 
-    private static Item registerItem(String name, Item item) {
-        return Registry.register(Registries.ITEM, Identifier.of(ItemMagnetMod.MOD_ID, name), item);
+    private static Item registerItem(Item item, RegistryKey<Item> registryKey) {
+        return Registry.register(Registries.ITEM, registryKey.getValue(), item);
     }
 
     public static void registerModItems() {

@@ -9,6 +9,13 @@ The Item Magnet is intended to be a late game item, therefore it is not easy to 
 
 ## Installation
 
+### Versions
+
+- Java: 21.0.6
+- Gradle: 8.0.1
+
+### Step by Step
+
 * Open the project in your favorite IDE (I use IntelliJ IDEA).
 * Wait for gradle to be initialized (This should happen automatically).
 * Run the gradle task `fabric/genSources` to generate the minecraft sources.
