@@ -1,14 +1,17 @@
 package net.davdeo.itemmagnetmod.item.custom;
 
 import net.davdeo.itemmagnetmod.util.ItemMagnetHelper;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.ConsumableComponent;
+import net.minecraft.component.type.EquippableComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -20,14 +23,20 @@ public class ItemMagnetItem extends Item {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        ItemStack stack = player.getStackInHand(hand);
+    public ActionResult use(World world, PlayerEntity player, Hand hand) {
+        ItemStack itemStack = player.getStackInHand(hand);
+        ConsumableComponent consumableComponent = itemStack.get(DataComponentTypes.CONSUMABLE);
 
         if(!world.isClient()) {
-            ItemMagnetHelper.toggleIsActive(stack);
+            ItemMagnetHelper.toggleIsActive(itemStack);
         }
 
-        return TypedActionResult.success(stack, true);
+        if (consumableComponent != null) {
+            return consumableComponent.consume(player, itemStack, hand);
+        } else {
+            EquippableComponent equippableComponent = itemStack.get(DataComponentTypes.EQUIPPABLE);
+            return equippableComponent != null && equippableComponent.swappable() ? equippableComponent.equip(itemStack, player) : ActionResult.PASS;
+        }
     }
 
     @Override

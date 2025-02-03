@@ -3,9 +3,7 @@
   "category": "equipment",
   "cookingtime": 200,
   "experience": 0,
-  "ingredient": {
-    "item": "itemmagnetmod:item_magnet_broken"
-  },
+  "ingredient":  "itemmagnetmod:item_magnet_broken",
   "result":  {
     "id": "itemmagnetmod:magnet_core"
   }
