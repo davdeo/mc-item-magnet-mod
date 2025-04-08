@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "M": {
-      "item": "itemmagnetmod:magnet_core"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "C": {
-      "item": "minecraft:copper_ingot"
-    }
+    "M": "itemmagnetmod:magnet_core",
+    "I": "minecraft:iron_ingot",
+    "C": "minecraft:copper_ingot"
   },
   "pattern": [
     "I I",

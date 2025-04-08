@@ -5,11 +5,12 @@ on:
     branches:
       - master
 
-env:                                              #Environment variables that can later be referenced using ${{ env.MINECRAFT_VERSION }}. These are useful for repeating information and allow for quick changes for new mod updates
-  MINECRAFT_VERSION: 1.21.0
+#Environment variables that can later be referenced using ${{ env.MINECRAFT_VERSION }}. These are useful for repeating information and allow for quick changes for new mod updates
+env:
+  MINECRAFT_VERSION: 1.21.4
   JAVA_VERSION: 21
-  VERSION: 2.0
-  RELEASE_NAME: davdeos-item-magnet-mod-2.0-1.21.0
+  VERSION: 2.1
+  RELEASE_NAME: davdeos-item-magnet-mod-2.1-1.21.4
   MODRINTH_ID: V9obxUzB
   MODRINTH_TOKEN: ${{ secrets.PUBLISH_MODRINTH_TOKEN }}
   CURSEFORGE_ID: 992847
