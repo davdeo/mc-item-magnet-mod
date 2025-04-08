@@ -48,12 +48,23 @@ jobs:
       - name: Build
         run: ./gradlew clean build
 
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: ./build/libs  # Adjust path to your build output
+
   publish-modrinth:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts
 
       - name: Use the output from the build job
         run: |
@@ -82,6 +93,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts
+
       - name: Use the output from the build job
         run: |
           echo "Using build output for curseforge release"
@@ -108,6 +124,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts
 
       - name: Use the output from the build job
         run: |
