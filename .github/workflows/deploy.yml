@@ -63,15 +63,15 @@ jobs:
         run: |
           echo "Using build output for ${{ matrix.platform }}"
 
-      - name: Publish to ${{ matrix.platform | capitalize }}
+      - name: Publish to ${{ matrix.platform }}
         uses: Kir-Antipov/mc-publish@v3.3
         with:
-          # Conditionally set the parameters based on platform
-          ${{ matrix.platform }}-id: ${{ env[ matrix.platform | upper + '_ID'] }}
-          ${{ matrix.platform }}-token: ${{ env[ matrix.platform | upper + '_TOKEN'] }}
+          # Handle platform-specific parameters
+          ${{ matrix.platform }}-id: ${{ env[ format('{0}_ID', matrix.platform | upper ) ] }}
+          ${{ matrix.platform }}-token: ${{ env[ format('{0}_TOKEN', matrix.platform | upper ) ] }}
 
-          # Handle GitHub's unique parameter (github-tag instead of github-id)
-          ${{ matrix.platform == 'github' && 'github-tag' || matrix.platform + '-tag' }}: ${{ matrix.platform == 'github' && 'v' + env.VERSION + '-' + env.MINECRAFT_VERSION || '' }}
+          # Handle GitHub specific tag
+          ${{ matrix.platform == 'github' && 'github-tag' || format('{0}-tag', matrix.platform) }}: ${{ matrix.platform == 'github' && format('v{0}-{1}', env.VERSION, env.MINECRAFT_VERSION) || '' }}
 
           name: "${{env.RELEASE_NAME}}"
           version: "${{env.VERSION}}"
