@@ -5,18 +5,20 @@ on:
     branches:
       - master
 
-#Environment variables that can later be referenced using ${{ env.MINECRAFT_VERSION }}. These are useful for repeating information and allow for quick changes for new mod updates
+# Environment variables that can later be referenced using ${{ env.MINECRAFT_VERSION }}. These are useful for repeating information and allow for quick changes for new mod updates.
 env:
   MINECRAFT_VERSION: 1.21.4
   JAVA_VERSION: 21
   VERSION: 2.1
   RELEASE_NAME: davdeos-item-magnet-mod-2.1-1.21.4
   MODRINTH_ID: V9obxUzB
-  MODRINTH_TOKEN: ${{ secrets.PUBLISH_MODRINTH_TOKEN }}
+  MODRINTH_TOKEN: xxx
+#  MODRINTH_TOKEN: ${{ secrets.PUBLISH_MODRINTH_TOKEN }}
   CURSEFORGE_ID: 992847
-  CURSEFORGE_TOKEN: ${{ secrets.PUBLISH_CURSEFORGE_TOKEN }}
-  GITHUB_TOKEN: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
-
+  CURSEFORGE_TOKEN: xxx
+#  CURSEFORGE_TOKEN: ${{ secrets.PUBLISH_CURSEFORGE_TOKEN }}
+  GITHUB_TOKEN: xxx
+#  GITHUB_TOKEN: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
 
 permissions:
   contents: write
@@ -46,17 +48,30 @@ jobs:
       - name: Build
         run: ./gradlew clean build
 
-      - name: Publish (CurseForge/Modrinth/GitHub)
-        uses: Kir-Antipov/mc-publish@v3.3                                   #The specified MC-Publish GitHub Action in the version 3.2
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [curseforge, modrinth, github]  # Platforms to run in parallel
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Use the output from the build job
+        run: |
+          echo "Using build output for ${{ matrix.platform }}"
+
+      - name: Publish to ${{ matrix.platform | capitalize }}
+        uses: Kir-Antipov/mc-publish@v3.3
         with:
-          curseforge-id: "${{env.CURSEFORGE_ID}}"
-          curseforge-token: "${{env.CURSEFORGE_TOKEN}}"
+          # Conditionally set the parameters based on platform
+          ${{ matrix.platform }}-id: ${{ env[ matrix.platform | upper + '_ID'] }}
+          ${{ matrix.platform }}-token: ${{ env[ matrix.platform | upper + '_TOKEN'] }}
 
-          modrinth-id: "${{env.MODRINTH_ID}}"
-          modrinth-token: "${{env.MODRINTH_TOKEN}}"
-
-          github-tag: "v${{env.VERSION}}-${{env.MINECRAFT_VERSION}}"
-          github-token: "${{env.GITHUB_TOKEN}}"
+          # Handle GitHub's unique parameter (github-tag instead of github-id)
+          ${{ matrix.platform == 'github' && 'github-tag' || matrix.platform + '-tag' }}: ${{ matrix.platform == 'github' && 'v' + env.VERSION + '-' + env.MINECRAFT_VERSION || '' }}
 
           name: "${{env.RELEASE_NAME}}"
           version: "${{env.VERSION}}"
