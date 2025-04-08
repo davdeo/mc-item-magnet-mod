@@ -70,7 +70,7 @@ jobs:
           name: build-artifacts
 
       - name: List build directory
-        run: ls -la ./build/libs
+        run: ls -la
 
       - name: Use the output from the build job
         run: |
@@ -103,6 +103,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
+          path: ./build/libs  # Adjust path to your build output
 
       - name: Use the output from the build job
         run: |
