@@ -69,6 +69,9 @@ jobs:
         with:
           name: build-artifacts
 
+      - name: List build directory
+        run: ls -la ./build/libs
+
       - name: Use the output from the build job
         run: |
           echo "Using build output for modrinth release"
@@ -97,7 +100,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
 
@@ -129,7 +132,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
 
@@ -143,6 +146,7 @@ jobs:
           # Handle platform-specific parameters
           github-tag: "v${{env.VERSION}}-${{env.MINECRAFT_VERSION}}"
           github-token: "${{env.GITHUB_TOKEN}}"
+          github-generate-changelog: true
 
           name: "${{env.RELEASE_NAME}}"
           version: "${{env.VERSION}}"
