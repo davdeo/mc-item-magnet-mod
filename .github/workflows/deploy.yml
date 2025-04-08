@@ -3,7 +3,7 @@ name: Publish on GitHub, CurseForge & Modrinth    #The name of your GitHub Actio
 on:
   push:
     branches:
-      - develop
+      - master
 
 # Environment variables that can later be referenced using ${{ env.MINECRAFT_VERSION }}. These are useful for repeating information and allow for quick changes for new mod updates.
 env:
@@ -12,13 +12,10 @@ env:
   VERSION: 2.1
   RELEASE_NAME: davdeos-item-magnet-mod-2.1-1.21.4
   MODRINTH_ID: V9obxUzB
-  MODRINTH_TOKEN: xxx
-#  MODRINTH_TOKEN: ${{ secrets.PUBLISH_MODRINTH_TOKEN }}
+  MODRINTH_TOKEN: ${{ secrets.PUBLISH_MODRINTH_TOKEN }}
   CURSEFORGE_ID: 992847
-  CURSEFORGE_TOKEN: xxx
-#  CURSEFORGE_TOKEN: ${{ secrets.PUBLISH_CURSEFORGE_TOKEN }}
-  GITHUB_TOKEN: xxx
-#  GITHUB_TOKEN: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
+  CURSEFORGE_TOKEN: ${{ secrets.PUBLISH_CURSEFORGE_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
 
 permissions:
   contents: write
