@@ -1,8 +1,8 @@
 ---
 name: Update request
 about: Create a request for an update to a specific minecraft version
-title: ''
-labels: ''
+title: 'Update to 1.2x.x'
+labels: 'update'
 assignees: ''
 
 ---
@@ -11,4 +11,4 @@ assignees: ''
  - Target Minecraft version: [e.g. 1.20.4]
 
 **Additional context (optional)**
-Add any other context about your request.
+ - Add any other context about your request.
