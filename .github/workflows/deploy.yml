@@ -48,30 +48,77 @@ jobs:
       - name: Build
         run: ./gradlew clean build
 
-  publish:
+  publish-modrinth:
     needs: build
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        platform: [curseforge, modrinth, github]  # Platforms to run in parallel
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
       - name: Use the output from the build job
         run: |
-          echo "Using build output for ${{ matrix.platform }}"
+          echo "Using build output for modrinth release"
 
-      - name: Publish to ${{ matrix.platform }}
+      - name: Release to modrinth
         uses: Kir-Antipov/mc-publish@v3.3
         with:
           # Handle platform-specific parameters
-          ${{ matrix.platform }}-id: ${{ env[ format('{0}_ID', matrix.platform | upper ) ] }}
-          ${{ matrix.platform }}-token: ${{ env[ format('{0}_TOKEN', matrix.platform | upper ) ] }}
+          modrinth-id: "${{env.MODRINTH_ID}}"
+          modrinth-token: "${{env.MODRINTH_TOKEN}}"
 
-          # Handle GitHub specific tag
-          ${{ matrix.platform == 'github' && 'github-tag' || format('{0}-tag', matrix.platform) }}: ${{ matrix.platform == 'github' && format('v{0}-{1}', env.VERSION, env.MINECRAFT_VERSION) || '' }}
+          name: "${{env.RELEASE_NAME}}"
+          version: "${{env.VERSION}}"
+          version-type: release
+          changelog-file: CHANGELOG.md
+
+          loaders: fabric
+          game-versions: "${{env.MINECRAFT_VERSION}}"
+          java: "${{env.JAVA_VERSION}}"
+
+  publish-curseforge:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Use the output from the build job
+        run: |
+          echo "Using build output for curseforge release"
+
+      - name: Release to curseforge
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          # Handle platform-specific parameters
+          curseforge-id: "${{env.CURSEFORGE_ID}}"
+          curseforge-token: "${{env.CURSEFORGE_TOKEN}}"
+
+          name: "${{env.RELEASE_NAME}}"
+          version: "${{env.VERSION}}"
+          version-type: release
+          changelog-file: CHANGELOG.md
+
+          loaders: fabric
+          game-versions: "${{env.MINECRAFT_VERSION}}"
+          java: "${{env.JAVA_VERSION}}"
+
+  release-github:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Use the output from the build job
+        run: |
+          echo "Using build output for github release"
+
+      - name: Release to github
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          # Handle platform-specific parameters
+          github-tag: "v${{env.VERSION}}-${{env.MINECRAFT_VERSION}}"
+          github-token: "${{env.GITHUB_TOKEN}}"
 
           name: "${{env.RELEASE_NAME}}"
           version: "${{env.VERSION}}"
