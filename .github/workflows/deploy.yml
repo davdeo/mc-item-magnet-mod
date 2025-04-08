@@ -48,9 +48,6 @@ jobs:
       - name: Build
         run: ./gradlew clean build
 
-      - name: List build directory
-        run: ls -la ./build/libs
-
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -68,13 +65,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-
-      - name: List build directory
-        run: ls -la
-
-      - name: Use the output from the build job
-        run: |
-          echo "Using build output for modrinth release"
+          path: ./build/libs  # Adjust path to your build output
 
       - name: Release to modrinth
         uses: Kir-Antipov/mc-publish@v3.3
@@ -105,10 +96,6 @@ jobs:
           name: build-artifacts
           path: ./build/libs  # Adjust path to your build output
 
-      - name: Use the output from the build job
-        run: |
-          echo "Using build output for curseforge release"
-
       - name: Release to curseforge
         uses: Kir-Antipov/mc-publish@v3.3
         with:
@@ -136,10 +123,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-
-      - name: Use the output from the build job
-        run: |
-          echo "Using build output for github release"
+          path: ./build/libs  # Adjust path to your build output
 
       - name: Release to github
         uses: Kir-Antipov/mc-publish@v3.3
