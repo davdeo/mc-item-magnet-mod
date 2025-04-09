@@ -20,7 +20,6 @@ The Item Magnet is intended to be a late game item, therefore it is not easy to 
 * Wait for gradle to be initialized (This should happen automatically).
   * If it does not automatically happen or you get errors, make sure the jdk and gradle are recognized correctly by the IDE
 * Run the gradle task `fabric/genSources` to generate the minecraft sources.
-* Restart the IDE.
 * Run the client with `fabric/runClient`
 
 ## Feedback
