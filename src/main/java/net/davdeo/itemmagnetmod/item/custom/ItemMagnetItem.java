@@ -4,6 +4,7 @@ import net.davdeo.itemmagnetmod.util.ItemMagnetHelper;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ConsumableComponent;
 import net.minecraft.component.type.EquippableComponent;
+import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,7 +15,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 
 public class ItemMagnetItem extends Item {
@@ -45,13 +46,13 @@ public class ItemMagnetItem extends Item {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, TooltipDisplayComponent displayComponent, Consumer<Text> textConsumer, TooltipType type) {
         boolean isActive = ItemMagnetHelper.getIsActive(stack);
 
         if (isActive) {
-            tooltip.add(Text.translatable("item.itemmagnetmod.item_magnet.active").formatted(Formatting.GOLD));
+            textConsumer.accept(Text.translatable("item.itemmagnetmod.item_magnet.active").formatted(Formatting.GOLD));
         } else {
-            tooltip.add(Text.translatable("item.itemmagnetmod.item_magnet.not_active"));
+            textConsumer.accept(Text.translatable("item.itemmagnetmod.item_magnet.not_active"));
         }
     }
 }
