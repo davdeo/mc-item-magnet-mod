@@ -60,7 +60,7 @@ public interface PickupItemEvent {
                 serverPlayer.getWorld().playSound(
                         null,
                         serverPlayer.getBlockPos(),
-                        SoundEvents.ENTITY_ITEM_BREAK,
+                        SoundEvents.ENTITY_ITEM_BREAK.value(),
                         SoundCategory.PLAYERS,
                         1f, 1f
                     );
