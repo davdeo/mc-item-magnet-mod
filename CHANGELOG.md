@@ -1,3 +1,12 @@
+# v2.2
+* Update to minecraft version 1.21.5
+
+# v2.1
+* Update to minecraft version 1.21.4
+
+# v2.0
+* Update to minecraft version 1.21.0
+
 # v1.1
 * Setup of automatic deployment
 
