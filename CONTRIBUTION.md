@@ -34,8 +34,8 @@ plugins {
   `./gradlew migrateMappings --mappings "xxx"`
 * In case the used gradle version is not compatible
   * Update the `distributionUrl` in `gradle/wrapper/gradle-wrapper.propperties` 
-  * Sync gradle projects (refresh icon in gradle area of IDE)
   * Try migrateMappings again
+* Sync gradle projects (refresh icon in gradle area of IDE)
 * Update minecraft dependencies in `src/main/resources/fabric.mod.json`
 * Update minecraft version in `.github/workflows/deploy.yml`
 * Run the gradle task `fabric/genSources` to generate the minecraft sources.
