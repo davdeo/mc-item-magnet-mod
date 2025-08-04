@@ -30,6 +30,11 @@ plugins {
 ```
 * Update yarn mappings with this command
   `./gradlew migrateMappings --mappings "xxx"`
-* In case the used gradle version is not compatible, update the `distributionUrl` in `gradle/wrapper/gradle-wrapper.propperties` and try migrateMappings again.
+* In case the used gradle version is not compatible
+  * Update the `distributionUrl` in `gradle/wrapper/gradle-wrapper.propperties` 
+  * Sync gradle projects (refresh icon in gradle area of IDE)
+  * Try migrateMappings again
+* Update minecraft dependencies in `src/main/resources/fabric.mod.json`
+* Update minecraft version in `.github/workflows/deploy.yml`
 * Run the gradle task `fabric/genSources` to generate the minecraft sources.
 * Run the client with `fabric/runClient`
