@@ -10,6 +10,7 @@ the release.
 * Update `deploy.yml` & `src/main/resources/fabric.mod.json` to match the latest release information.
 * Update `CHANGELOG.md` with the latest changes.
 * Manually build and test everything!
+  * Run `clean` & `build` -> Built mod should be located in `build/libs/itemmagnetmod-x.x.jar`
 * Merge release branch to master.
 * The release is automatically deployed to modrinth and curseforge. 
 * A new release + tag is automatically created in github
@@ -28,6 +29,7 @@ plugins {
     ...
 }
 ```
+* Delete / clear `remappedSrc` directory
 * Update yarn mappings with this command
   `./gradlew migrateMappings --mappings "xxx"`
 * In case the used gradle version is not compatible
