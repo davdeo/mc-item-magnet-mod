@@ -1,3 +1,7 @@
+# v2.6
+* Add Ukraine language support
+* Add description for modmenu
+
 # v2.5
 * Update to minecraft version 1.21.8
 
