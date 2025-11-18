@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
-@Mixin(ItemEntity.class)
+@Mixin(value = ItemEntity.class, priority = 1002)
 public abstract class ItemEntityMixin extends Entity implements Ownable {
 	@Unique
 	private static final double PICKUP_DISTANCE = 32.0;
@@ -38,7 +38,7 @@ public abstract class ItemEntityMixin extends Entity implements Ownable {
 	private void updateTarget() {
 		ItemEntity thisObj = (ItemEntity)(Object)this;
 
-		PlayerEntity nextTarget = ItemMagnetHelper.getClosestPlayerWithActiveMagnet(thisObj.getWorld(), thisObj);
+		PlayerEntity nextTarget = ItemMagnetHelper.getClosestPlayerWithActiveMagnet(thisObj.getEntityWorld(), thisObj);
 
 		if (nextTarget != null && (nextTarget.isSpectator() || nextTarget.isDead())) {
 			this.target = null;
