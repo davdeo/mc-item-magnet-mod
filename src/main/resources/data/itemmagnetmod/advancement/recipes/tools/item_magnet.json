@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_magnet_core": {
+      "conditions": {
+        "items": [
+          {
+            "items": "itemmagnetmod:magnet_core"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_magnet_core"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "itemmagnetmod:item_magnet_from_magnet_core"
+    ]
+  }
+}
