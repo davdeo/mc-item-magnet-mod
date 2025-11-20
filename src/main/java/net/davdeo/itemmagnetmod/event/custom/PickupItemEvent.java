@@ -39,6 +39,10 @@ public interface PickupItemEvent {
 
         ItemStack activeMagnet = player.getInventory().getStack(activeMagnetInventoryIndex);
 
+        if (player.getAbilities().creativeMode) {
+            return ActionResult.PASS;
+        }
+
         ServerPlayerEntity serverPlayer = null;
         if (player instanceof ServerPlayerEntity serverPlayerEntity) {
             serverPlayer = serverPlayerEntity;
@@ -63,7 +67,7 @@ public interface PickupItemEvent {
                         SoundEvents.ENTITY_ITEM_BREAK.value(),
                         SoundCategory.PLAYERS,
                         1f, 1f
-                    );
+                );
             }
         }
 
