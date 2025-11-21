@@ -7,9 +7,9 @@ on:
 
 # Environment variables that can later be referenced using ${{ env.MINECRAFT_VERSION }}. These are useful for repeating information and allow for quick changes for new mod updates.
 env:
-  VERSION: 2.6
+  VERSION: 2.7
   MINECRAFT_VERSION: 1.21.8
-  RELEASE_NAME: davdeos-item-magnet-mod-2.6-1.21.8
+  RELEASE_NAME: davdeos-item-magnet-mod-2.7-1.21.8
   JAVA_VERSION: 21
   MODRINTH_ID: V9obxUzB
   MODRINTH_TOKEN: ${{ secrets.PUBLISH_MODRINTH_TOKEN }}
