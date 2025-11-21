@@ -31,5 +31,7 @@ Many thanks to Kaupenjoe for his extensive tutorials on youtube. They helped me 
 
 Another helpful resource was the fabric wiki which also provides a few very helpful examples [Fabric Wiki](https://fabricmc.net/wiki/start/)
 
+Many thanks go out to StarmanMine142 for translating and helping out with keeping the mod up to date.
+
 ## Licence
 Read more [here](./LICENCE.md)

@@ -60,14 +60,14 @@ public interface PickupItemEvent {
             activeMagnet.decrement(1);
 
             player.getInventory().setStack(activeMagnetInventoryIndex, new ItemStack(ModItems.ITEM_MAGNET_BROKEN));
-            if (serverPlayer != null && !serverPlayer.getWorld().isClient) {
-                serverPlayer.getWorld().playSound(
+            if (serverPlayer != null && !serverPlayer.getEntityWorld().isClient()) {
+                serverPlayer.getEntityWorld().playSound(
                         null,
                         serverPlayer.getBlockPos(),
                         SoundEvents.ENTITY_ITEM_BREAK.value(),
                         SoundCategory.PLAYERS,
                         1f, 1f
-                    );
+                );
             }
         }
 
