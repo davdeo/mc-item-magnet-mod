@@ -1,3 +1,13 @@
+# v2.7
+* Add Russian language support
+* Fix crash with Collective
+* Magnet no longer breaks in creative mode
+* Now the player is given recipes if he gets the right items (eg magnet core = magnet recipe)
+
+# v2.6
+* Add Ukraine language support
+* Add description for modmenu
+
 # v2.5
 * Update to minecraft version 1.21.8
 

@@ -39,6 +39,10 @@ public interface PickupItemEvent {
 
         ItemStack activeMagnet = player.getInventory().getStack(activeMagnetInventoryIndex);
 
+        if (player.getAbilities().creativeMode) {
+            return ActionResult.PASS;
+        }
+
         ServerPlayerEntity serverPlayer = null;
         if (player instanceof ServerPlayerEntity serverPlayerEntity) {
             serverPlayer = serverPlayerEntity;
