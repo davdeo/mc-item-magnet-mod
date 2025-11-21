@@ -1,0 +1,11 @@
+{
+  "item.itemmagnetmod.item_magnet": "Магнит",
+  "item.itemmagnetmod.item_magnet.active": "Включён",
+  "item.itemmagnetmod.item_magnet.not_active": "Выключен",
+
+  "item.itemmagnetmod.item_magnet_broken": "Сломанный магнит",
+  "item.itemmagnetmod.magnet_core": "Магнитное ядро",
+
+  "itemgroup.item_magnet": "davdeo's Item Magnet",
+  "modmenu.descriptionTranslation.itemmagnetmod": "Этот мод добавляет в игру магнит для предметов, Его можно включать и выключатьЮ также он теряет прочность за каждый подобраный предмет."
+}
