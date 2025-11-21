@@ -1,3 +1,6 @@
+# v2.8
+* Update to minecraft version 1.21.10
+
 # v2.7
 * Add Russian language support
 * Fix crash with Collective
