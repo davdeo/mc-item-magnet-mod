@@ -1,11 +1,11 @@
 {
   "item.itemmagnetmod.item_magnet": "Магніт",
-  "item.itemmagnetmod.item_magnet.active": "Увімкнено",
-  "item.itemmagnetmod.item_magnet.not_active": "Вимкнено",
+  "item.itemmagnetmod.item_magnet.active": "Увімкнений",
+  "item.itemmagnetmod.item_magnet.not_active": "Вимкнений",
 
   "item.itemmagnetmod.item_magnet_broken": "Зламаний магніт",
   "item.itemmagnetmod.magnet_core": "Магнітне ядро",
 
   "itemgroup.item_magnet": "davdeo's Item Magnet",
-  "modmenu.descriptionTranslation.itemmagnetmod": "Цей мод додає в гру магніт для предметів. Його можна вмикати та вимикати, токож він втрачає міцність за кожен підібраний предмет"
+  "modmenu.descriptionTranslation.itemmagnetmod": "Цей мод додає в гру магніт для предметів. Його можна вмикати та вимикати, токож він втрачає міцність за кожен підібраний предмет."
 }
