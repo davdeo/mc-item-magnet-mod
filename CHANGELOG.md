@@ -1,5 +1,4 @@
 # v2.7
-* Update to minecraft version 1.21.10
 * Add Russian language support
 * Fix crash with Collective
 * Magnet no longer breaks in creative mode
