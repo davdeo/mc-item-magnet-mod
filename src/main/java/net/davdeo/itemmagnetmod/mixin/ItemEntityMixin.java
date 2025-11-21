@@ -38,7 +38,7 @@ public abstract class ItemEntityMixin extends Entity implements Ownable {
 	private void updateTarget() {
 		ItemEntity thisObj = (ItemEntity)(Object)this;
 
-		PlayerEntity nextTarget = ItemMagnetHelper.getClosestPlayerWithActiveMagnet(thisObj.getWorld(), thisObj);
+		PlayerEntity nextTarget = ItemMagnetHelper.getClosestPlayerWithActiveMagnet(thisObj.getEntityWorld(), thisObj);
 
 		if (nextTarget != null && (nextTarget.isSpectator() || nextTarget.isDead())) {
 			this.target = null;
