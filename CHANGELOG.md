@@ -1,3 +1,6 @@
+# v2.9
+* Update to minecraft version 1.21.9
+
 # v2.8
 * Update to minecraft version 1.21.10
 

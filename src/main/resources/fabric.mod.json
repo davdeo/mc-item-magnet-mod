@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "itemmagnetmod",
-	"version": "${2.8}",
+	"version": "${2.9}",
 	"name": "Item Magnet Mod",
 	"description": "This mod adds an item magnet to the game. It can be activated / deactivated and looses durability for each item picked up.",
 	"authors": [
@@ -29,7 +29,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.18.0",
-		"minecraft": "~1.21.10",
+		"minecraft": "~1.21.9",
 		"java": ">=21",
 		"fabric-api": "*"
 	},
