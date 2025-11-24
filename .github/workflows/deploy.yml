@@ -3,7 +3,7 @@ name: Publish on GitHub, CurseForge & Modrinth    #The name of your GitHub Actio
 on:
   push:
     branches:
-      - master
+      - release/2.9
 
 # Environment variables that can later be referenced using ${{ env.MINECRAFT_VERSION }}. These are useful for repeating information and allow for quick changes for new mod updates.
 env:
