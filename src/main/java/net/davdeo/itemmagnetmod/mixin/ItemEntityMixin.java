@@ -1,5 +1,6 @@
 package net.davdeo.itemmagnetmod.mixin;
 
+import net.davdeo.itemmagnetmod.ItemMagnetMod;
 import net.davdeo.itemmagnetmod.event.custom.PickupItemEvent;
 import net.davdeo.itemmagnetmod.util.ItemMagnetHelper;
 import net.minecraft.entity.*;
@@ -109,26 +110,46 @@ public abstract class ItemEntityMixin extends Entity implements Ownable {
 		}
 	}
 
-	/**
-	 * Redirects the call of insertStack in the onPlayerCollision method.
-	 * Invokes the PickupItemEvent when a PlayerEntity picks up an ItemEntity.
-	 * Event is invoked with the player picking up the item and the stack that is picked up.
-	 */
-	@Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerInventory;insertStack(Lnet/minecraft/item/ItemStack;)Z"), method = "onPlayerCollision")
-	private boolean redirectedInsertStack(PlayerInventory instance, ItemStack stack) {
-		int stackSizeBeforePickup = stack.getCount();
-		boolean fullyPickedUp = instance.insertStack(stack);
-		int stackSizeAfterPickup = stack.getCount();
 
-		if (stackSizeBeforePickup == stackSizeAfterPickup) {
-			// Only triggered if no item was picked up, therefore fullyPickedUp should always be false here.
-			return fullyPickedUp;
-		}
+    @Unique
+    private int stackCountBeforePickup = 0;
 
-		int pickedUpItemsCount = stackSizeBeforePickup - stackSizeAfterPickup;
+    /**
+     * Captures the stack count BEFORE the insertStack call.
+     * Injects at the beginning of onPlayerCollision.
+     */
+    @Inject(
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/player/PlayerInventory;insertStack(Lnet/minecraft/item/ItemStack;)Z",
+                    shift = At.Shift.BEFORE
+            ),
+            method = "onPlayerCollision"
+    )
+    private void captureStackCountBefore(PlayerEntity player, CallbackInfo ci) {
+        ItemEntity thisObj = (ItemEntity)(Object)this;
+        this.stackCountBeforePickup = thisObj.getStack().getCount();
+    }
 
-		PickupItemEvent.EVENT.invoker().onPickup(instance.player, pickedUpItemsCount);
+    /**
+     * Invokes the PickupItemEvent AFTER the insertStack call.
+     * Calculates the difference between before and after pickup counts.
+     */
+    @Inject(
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/player/PlayerInventory;insertStack(Lnet/minecraft/item/ItemStack;)Z",
+                    shift = At.Shift.AFTER
+            ),
+            method = "onPlayerCollision"
+    )
+    private void onItemPickup(PlayerEntity player, CallbackInfo ci) {
+        ItemEntity thisObj = (ItemEntity)(Object)this;
+        int stackCountAfterPickup = thisObj.getStack().getCount();
+        int pickedUpItemsCount = this.stackCountBeforePickup - stackCountAfterPickup;
 
-		return fullyPickedUp;
-	}
+        if (pickedUpItemsCount > 0) {
+            PickupItemEvent.EVENT.invoker().onPickup(player, pickedUpItemsCount);
+        }
+    }
 }
