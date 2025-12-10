@@ -3,6 +3,7 @@ package net.davdeo.itemmagnetmod.item;
 import net.davdeo.itemmagnetmod.ItemMagnetMod;
 import net.davdeo.itemmagnetmod.component.ModComponents;
 import net.davdeo.itemmagnetmod.item.custom.ItemMagnetItem;
+import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.fabricmc.fabric.api.item.v1.FabricItem.Settings;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -10,8 +11,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
-
-import static net.davdeo.itemmagnetmod.ItemMagnetMod.MOD_ID;
 
 public class ModItems {
     private ModItems() {
@@ -22,10 +21,9 @@ public class ModItems {
             Registries.ITEM,
             Identifier.fromNamespaceAndPath(ItemMagnetMod.MOD_ID, "item_magnet"));
     public static final Item ITEM_MAGNET = registerItem(
-            new ItemMagnetItem(
-                    new Settings()
-                            .registryKey(ITEM_MAGNET_KEY)
-                            .maxDamage(1024)
+            new Item(
+                    new Item.Properties()
+                            .durability(1024)
                             .component(ModComponents.ITEM_MAGNET_ITEM_IS_ACTIVE_COMPONENT, false)
             ),
             ITEM_MAGNET_KEY
@@ -33,7 +31,7 @@ public class ModItems {
 
     public static final ResourceKey<Item> ITEM_MAGNET_BROKEN_KEY = ResourceKey.create(
             Registries.ITEM,
-            Identifier.fromNamespaceAndPath(MOD_ID, "item_magnet_broken"));
+            Identifier.fromNamespaceAndPath(ItemMagnetMod.MOD_ID, "item_magnet_broken"));
     public static final Item ITEM_MAGNET_BROKEN = registerItem(
             new Item(
                     new Item.Properties()
@@ -45,7 +43,7 @@ public class ModItems {
 
     public static final ResourceKey<Item> MAGNET_CORE_KEY = ResourceKey.create(
             Registries.ITEM,
-            Identifier.fromNamespaceAndPath(MOD_ID, "magnet_core"));
+            Identifier.fromNamespaceAndPath(ItemMagnetMod.MOD_ID, "magnet_core"));
     public static final Item MAGNET_CORE = registerItem(
             new Item(
                     new Item.Properties()
@@ -61,6 +59,6 @@ public class ModItems {
     }
 
     public static void registerModItems() {
-        ItemMagnetMod.LOGGER.info("Registering mod items for: " + MOD_ID);
+        ItemMagnetMod.LOGGER.info("Registering mod items for: " + ItemMagnetMod.MOD_ID);
     }
 }
