@@ -12,6 +12,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.davdeo.itemmagnetmod.config.ModConfig;
 
 public interface PickupItemEvent {
     Event<PickupItemEvent> EVENT = EventFactory.createArrayBacked(PickupItemEvent.class,
@@ -31,6 +32,11 @@ public interface PickupItemEvent {
 
     static InteractionResult onPickupEvent(Player player, int pickedUpItemsCount) {
         ItemMagnetMod.LOGGER.debug("On pickup event");
+
+        if (ModConfig.getInstance().isIndestructible) {
+            return InteractionResult.PASS;
+        }
+
         int activeMagnetInventoryIndex = ItemMagnetHelper.getFirstActiveMagnetInventoryIndex(player);
 
         if (activeMagnetInventoryIndex == -1) {
@@ -39,6 +45,7 @@ public interface PickupItemEvent {
 
         ItemStack activeMagnet = player.getInventory().getItem(activeMagnetInventoryIndex);
 
+        // Игрок в креативе уже защищен
         if (player.getAbilities().instabuild) {
             return InteractionResult.PASS;
         }
@@ -48,9 +55,11 @@ public interface PickupItemEvent {
             serverPlayer = serverPlayerEntity;
         }
 
-        int newDamage = activeMagnet.getDamageValue() + pickedUpItemsCount;
+        int damageToApply = pickedUpItemsCount;
+        int newDamage = activeMagnet.getDamageValue() + damageToApply;
 
-        if (serverPlayer != null && pickedUpItemsCount != 0) {
+
+        if (serverPlayer != null && damageToApply != 0) {
             CriteriaTriggers.ITEM_DURABILITY_CHANGED.trigger(serverPlayer, activeMagnet, newDamage);
         }
 
