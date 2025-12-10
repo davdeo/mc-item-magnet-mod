@@ -113,26 +113,45 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
 		}
 	}
 
+	@Unique
+	private int stackCountBeforePickup = 0;
+
 	/**
-	 * Redirects the call of insertStack in the onPlayerCollision method.
-	 * Invokes the PickupItemEvent when a PlayerEntity picks up an ItemEntity.
-	 * Event is invoked with the player picking up the item and the stack that is picked up.
+	 * Captures the stack count BEFORE the insertStack call.
+	 * Injects at the beginning of onPlayerCollision.
 	 */
-	@Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Inventory;add(Lnet/minecraft/world/item/ItemStack;)Z"), method = "playerTouch")
-	private boolean redirectedInsertStack(Inventory instance, ItemStack stack) {
-		int stackSizeBeforePickup = stack.getCount();
-		boolean fullyPickedUp = instance.add(stack);
-		int stackSizeAfterPickup = stack.getCount();
+	@Inject(
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/world/entity/player/Inventory;add(Lnet/minecraft/world/item/ItemStack;)Z",
+					shift = At.Shift.BEFORE
+			),
+			method = "playerTouch"
+	)
+	private void captureStackCountBefore(Player player, CallbackInfo ci) {
+		ItemEntity thisObj = (ItemEntity)(Object)this;
+		this.stackCountBeforePickup = thisObj.getItem().getCount();
+	}
 
-		if (stackSizeBeforePickup == stackSizeAfterPickup) {
-			// Only triggered if no item was picked up, therefore fullyPickedUp should always be false here.
-			return fullyPickedUp;
+	/**
+	 * Invokes the PickupItemEvent AFTER the insertStack call.
+	 * Calculates the difference between before and after pickup counts.
+	 */
+	@Inject(
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/world/entity/player/Inventory;add(Lnet/minecraft/world/item/ItemStack;)Z",
+					shift = At.Shift.AFTER
+			),
+			method = "playerTouch"
+	)
+	private void onItemPickup(Player player, CallbackInfo ci) {
+		ItemEntity thisObj = (ItemEntity)(Object)this;
+		int stackCountAfterPickup = thisObj.getItem().getCount();
+		int pickedUpItemsCount = this.stackCountBeforePickup - stackCountAfterPickup;
+
+		if (pickedUpItemsCount > 0) {
+			PickupItemEvent.EVENT.invoker().onPickup(player, pickedUpItemsCount);
 		}
-
-		int pickedUpItemsCount = stackSizeBeforePickup - stackSizeAfterPickup;
-
-		PickupItemEvent.EVENT.invoker().onPickup(instance.player, pickedUpItemsCount);
-
-		return fullyPickedUp;
 	}
 }
