@@ -34,6 +34,7 @@ plugins {
   `./gradlew migrateMappings --mappings "xxx"`
 * In case the used gradle version is not compatible
   * Update the `distributionUrl` in `gradle/wrapper/gradle-wrapper.propperties` 
+  * Check here for changes to the gradle version in loom: https://github.com/FabricMC/fabric-loom/releases
   * Try migrateMappings again
 * Sync gradle projects (refresh icon in gradle area of IDE)
 * Update minecraft dependencies in `src/main/resources/fabric.mod.json`
