@@ -3,24 +3,27 @@ package net.davdeo.itemmagnetmod.item;
 import net.davdeo.itemmagnetmod.ItemMagnetMod;
 import net.davdeo.itemmagnetmod.component.ModComponents;
 import net.davdeo.itemmagnetmod.item.custom.ItemMagnetItem;
-import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
+import net.fabricmc.fabric.api.item.v1.FabricItem.Settings;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Item;
+
+import static net.davdeo.itemmagnetmod.ItemMagnetMod.MOD_ID;
 
 public class ModItems {
     private ModItems() {
         super();
     }
 
-    public static final RegistryKey<Item> ITEM_MAGNET_KEY = RegistryKey.of(
-            RegistryKeys.ITEM,
-            Identifier.of(ItemMagnetMod.MOD_ID, "item_magnet"));
+    public static final ResourceKey<Item> ITEM_MAGNET_KEY = ResourceKey.create(
+            Registries.ITEM,
+            Identifier.fromNamespaceAndPath(ItemMagnetMod.MOD_ID, "item_magnet"));
     public static final Item ITEM_MAGNET = registerItem(
             new ItemMagnetItem(
-                    new Item.Settings()
+                    new Settings()
                             .registryKey(ITEM_MAGNET_KEY)
                             .maxDamage(1024)
                             .component(ModComponents.ITEM_MAGNET_ITEM_IS_ACTIVE_COMPONENT, false)
@@ -28,30 +31,36 @@ public class ModItems {
             ITEM_MAGNET_KEY
     );
 
-    public static final RegistryKey<Item> ITEM_MAGNET_BROKEN_KEY = RegistryKey.of(
-            RegistryKeys.ITEM,
-            Identifier.of(ItemMagnetMod.MOD_ID, "item_magnet_broken"));
+    public static final ResourceKey<Item> ITEM_MAGNET_BROKEN_KEY = ResourceKey.create(
+            Registries.ITEM,
+            Identifier.fromNamespaceAndPath(MOD_ID, "item_magnet_broken"));
     public static final Item ITEM_MAGNET_BROKEN = registerItem(
-            new Item(new Item.Settings()
-                    .registryKey(ITEM_MAGNET_BROKEN_KEY)
-                    .maxCount(1)),
-            ITEM_MAGNET_BROKEN_KEY);
+            new Item(
+                    new Item.Properties()
+                    .setId(ITEM_MAGNET_BROKEN_KEY)
+                    .stacksTo(1)
+            ),
+            ITEM_MAGNET_BROKEN_KEY
+    );
 
-    public static final RegistryKey<Item> MAGNET_CORE_KEY = RegistryKey.of(
-            RegistryKeys.ITEM,
-            Identifier.of(ItemMagnetMod.MOD_ID, "magnet_core"));
+    public static final ResourceKey<Item> MAGNET_CORE_KEY = ResourceKey.create(
+            Registries.ITEM,
+            Identifier.fromNamespaceAndPath(MOD_ID, "magnet_core"));
     public static final Item MAGNET_CORE = registerItem(
-            new Item(new Item.Settings()
-                    .registryKey(MAGNET_CORE_KEY)
-                    .maxCount(1)),
-            MAGNET_CORE_KEY);
+            new Item(
+                    new Item.Properties()
+                    .setId(MAGNET_CORE_KEY)
+                    .stacksTo(1)
+            ),
+            MAGNET_CORE_KEY
+    );
 
 
-    private static Item registerItem(Item item, RegistryKey<Item> registryKey) {
-        return Registry.register(Registries.ITEM, registryKey.getValue(), item);
+    private static Item registerItem(Item item, ResourceKey<Item> registryKey) {
+        return Registry.register(BuiltInRegistries.ITEM, registryKey.registry(), item);
     }
 
     public static void registerModItems() {
-        ItemMagnetMod.LOGGER.info("Registering mod items for: " + ItemMagnetMod.MOD_ID);
+        ItemMagnetMod.LOGGER.info("Registering mod items for: " + MOD_ID);
     }
 }
