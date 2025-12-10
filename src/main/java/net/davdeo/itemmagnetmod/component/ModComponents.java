@@ -16,7 +16,7 @@ public class ModComponents {
 
     public static final DataComponentType<Boolean> ITEM_MAGNET_ITEM_IS_ACTIVE_COMPONENT = Registry.register(
             BuiltInRegistries.DATA_COMPONENT_TYPE,
-            Identifier.fromNamespaceAndPath("itemmagnetmod", ITEM_MAGNET_ITEM_IS_ACTIVE),
+            Identifier.fromNamespaceAndPath(ItemMagnetMod.MOD_ID, ITEM_MAGNET_ITEM_IS_ACTIVE),
             DataComponentType.<Boolean>builder().persistent(Codec.BOOL).build()
     );
 
