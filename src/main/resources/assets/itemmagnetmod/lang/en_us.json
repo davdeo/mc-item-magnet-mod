@@ -6,6 +6,6 @@
   "item.itemmagnetmod.item_magnet_broken": "Broken Item Magnet",
   "item.itemmagnetmod.magnet_core": "Magnet Core",
 
-  "itemgroup.item_magnet": "Item Magnet Group",
+  "itemgroup.item_magnet": "Item Magnet Mod",
   "modmenu.descriptionTranslation.itemmagnetmod": "This mod adds an item magnet to the game. It can be toggled on and off, and it loses strength for each item picked up."
 }
