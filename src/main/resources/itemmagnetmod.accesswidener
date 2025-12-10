@@ -1,9 +1,4 @@
-accessWidener v2 named
-
-# Entity
-accessible method net/minecraft/entity/Entity pushOutOfBlocks (DDD)V
-
-accessible field net/minecraft/entity/Entity random Lnet/minecraft/util/math/random/Random;
-
-# ItemEntity
-accessible method net/minecraft/entity/ItemEntity getVelocityAffectingPos ()Lnet/minecraft/util/math/BlockPos;
+accessWidener	v2	named
+accessible	method	net/minecraft/world/entity/Entity	moveTowardsClosestSpace	(DDD)V
+accessible	field	net/minecraft/world/entity/Entity	random	Lnet/minecraft/util/RandomSource;
+accessible	method	net/minecraft/world/entity/item/ItemEntity	getBlockPosBelowThatAffectsMyMovement	()Lnet/minecraft/core/BlockPos;
