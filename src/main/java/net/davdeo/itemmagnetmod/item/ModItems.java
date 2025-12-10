@@ -2,6 +2,7 @@ package net.davdeo.itemmagnetmod.item;
 
 import net.davdeo.itemmagnetmod.ItemMagnetMod;
 import net.davdeo.itemmagnetmod.component.ModComponents;
+import net.davdeo.itemmagnetmod.item.custom.ItemMagnetItem;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -18,8 +19,9 @@ public class ModItems {
             Registries.ITEM,
             Identifier.fromNamespaceAndPath(ItemMagnetMod.MOD_ID, "item_magnet"));
     public static final Item ITEM_MAGNET = registerItem(
-            new Item(
+            new ItemMagnetItem(
                     new Item.Properties()
+                            .setId(ITEM_MAGNET_KEY)
                             .durability(1024)
                             .component(ModComponents.ITEM_MAGNET_ITEM_IS_ACTIVE_COMPONENT, false)
             ),
@@ -32,8 +34,8 @@ public class ModItems {
     public static final Item ITEM_MAGNET_BROKEN = registerItem(
             new Item(
                     new Item.Properties()
-                    .setId(ITEM_MAGNET_BROKEN_KEY)
-                    .stacksTo(1)
+                            .setId(ITEM_MAGNET_BROKEN_KEY)
+                            .stacksTo(1)
             ),
             ITEM_MAGNET_BROKEN_KEY
     );
@@ -44,15 +46,15 @@ public class ModItems {
     public static final Item MAGNET_CORE = registerItem(
             new Item(
                     new Item.Properties()
-                    .setId(MAGNET_CORE_KEY)
-                    .stacksTo(1)
+                            .setId(MAGNET_CORE_KEY)
+                            .stacksTo(1)
             ),
             MAGNET_CORE_KEY
     );
 
 
     private static Item registerItem(Item item, ResourceKey<Item> registryKey) {
-        return Registry.register(BuiltInRegistries.ITEM, registryKey.registry(), item);
+        return Registry.register(BuiltInRegistries.ITEM, registryKey.identifier(), item);
     }
 
     public static void registerModItems() {
