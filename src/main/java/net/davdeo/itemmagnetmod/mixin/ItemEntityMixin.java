@@ -7,13 +7,16 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.TraceableEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
@@ -48,9 +51,9 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
 		}
 
 		if (
-				this.target == null
-						|| this.target.distanceToSqr(thisObj) > SQUARED_PICKUP_DISTANCE
-						|| this.target != nextTarget
+			this.target == null
+			|| this.target.distanceToSqr(thisObj) > SQUARED_PICKUP_DISTANCE
+			|| this.target != nextTarget
 		) {
 			this.target = nextTarget;
 		}
@@ -67,9 +70,9 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
 	 * 		this.prevX = this.getX();
 	 * 		this.prevY = this.getY();
 	 * 		this.prevZ = this.getZ();
-	 * 		Vec3d vec3d = this.getDeltaMovement();
+	 * 		Vec3d vec3d = this.getVelocity();
 	 *
-	 * ---> Inject here. After call to getDeltaMovement and before applying any movement
+	 * ---> Inject here. After call to getVelocity and before applying any movement
 	 *
 	 *      if (this.isTouchingWater() && this.getFluidHeight(FluidTags.WATER) > 0.10000000149011612) {
 	 *          this.applyWaterBuoyancy();
@@ -80,7 +83,7 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
 	 *      }
 	 * ...
 	 */
-	@Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ItemEntity;isTouchingWater()Z"))
+	@Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;isInWater()Z"))
 	private void moveToTarget(CallbackInfo info) {
 		ItemEntity thisObj = (ItemEntity)(Object)this;
 
@@ -92,7 +95,7 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
 		// Following logic was taken from ExperienceOrbEntity and slightly modified.
 		if (this.target != null) {
 			Vec3 targetEyeVector = new Vec3(this.target.getX() - thisObj.getX(), this.target.getY() + this.target.getEyeHeight() / 2.0 - thisObj.getY(), this.target.getZ() - thisObj.getZ());
-			double squaredTargetEyeDistance = targetEyeVector.horizontalDistanceSqr();
+			double squaredTargetEyeDistance = targetEyeVector.lengthSqr();
 
 			if (squaredTargetEyeDistance < SQUARED_PICKUP_DISTANCE) {
 				double relativeTargetEyeDistance = 1.0 - Math.sqrt(squaredTargetEyeDistance) / PICKUP_DISTANCE;
@@ -101,55 +104,35 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
 		}
 
 		if (
-				this.target != null &&
-						this.onGround() &&
-						this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5f &&
-						(this.tickCount + this.getId()) % 4 == 0
+			this.target != null &&
+			this.onGround() &&
+			this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5f &&
+			(this.tickCount + this.getId()) % 4 == 0
 		) {
 			thisObj.move(MoverType.SELF, thisObj.getDeltaMovement());
 		}
 	}
 
-
-	@Unique
-	private int stackCountBeforePickup = 0;
-
 	/**
-	 * Captures the stack count BEFORE the insertStack call.
-	 * Injects at the beginning of onPlayerCollision.
+	 * Redirects the call of insertStack in the onPlayerCollision method.
+	 * Invokes the PickupItemEvent when a PlayerEntity picks up an ItemEntity.
+	 * Event is invoked with the player picking up the item and the stack that is picked up.
 	 */
-	@Inject(
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/entity/player/PlayerInventory;insertStack(Lnet/minecraft/item/ItemStack;)Z",
-					shift = At.Shift.BEFORE
-			),
-			method = "onPlayerCollision"
-	)
-	private void captureStackCountBefore(Player player, CallbackInfo ci) {
-		ItemEntity thisObj = (ItemEntity)(Object)this;
-		this.stackCountBeforePickup = thisObj.getItem().getCount();
-	}
+	@Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Inventory;add(Lnet/minecraft/world/item/ItemStack;)Z"), method = "playerTouch")
+	private boolean redirectedInsertStack(Inventory instance, ItemStack stack) {
+		int stackSizeBeforePickup = stack.getCount();
+		boolean fullyPickedUp = instance.add(stack);
+		int stackSizeAfterPickup = stack.getCount();
 
-	/**
-	 * Invokes the PickupItemEvent AFTER the insertStack call.
-	 * Calculates the difference between before and after pickup counts.
-	 */
-	@Inject(
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/entity/player/PlayerInventory;insertStack(Lnet/minecraft/item/ItemStack;)Z",
-					shift = At.Shift.AFTER
-			),
-			method = "onPlayerCollision"
-	)
-	private void onItemPickup(Player player, CallbackInfo ci) {
-		ItemEntity thisObj = (ItemEntity)(Object)this;
-		int stackCountAfterPickup = thisObj.getItem().getCount();
-		int pickedUpItemsCount = this.stackCountBeforePickup - stackCountAfterPickup;
-
-		if (pickedUpItemsCount > 0) {
-			PickupItemEvent.EVENT.invoker().onPickup(player, pickedUpItemsCount);
+		if (stackSizeBeforePickup == stackSizeAfterPickup) {
+			// Only triggered if no item was picked up, therefore fullyPickedUp should always be false here.
+			return fullyPickedUp;
 		}
+
+		int pickedUpItemsCount = stackSizeBeforePickup - stackSizeAfterPickup;
+
+		PickupItemEvent.EVENT.invoker().onPickup(instance.player, pickedUpItemsCount);
+
+		return fullyPickedUp;
 	}
 }
