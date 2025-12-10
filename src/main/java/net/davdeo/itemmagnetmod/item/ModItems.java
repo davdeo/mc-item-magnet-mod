@@ -2,9 +2,6 @@ package net.davdeo.itemmagnetmod.item;
 
 import net.davdeo.itemmagnetmod.ItemMagnetMod;
 import net.davdeo.itemmagnetmod.component.ModComponents;
-import net.davdeo.itemmagnetmod.item.custom.ItemMagnetItem;
-import net.fabricmc.fabric.api.item.v1.FabricItem;
-import net.fabricmc.fabric.api.item.v1.FabricItem.Settings;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
