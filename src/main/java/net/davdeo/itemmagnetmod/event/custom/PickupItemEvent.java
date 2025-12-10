@@ -45,7 +45,6 @@ public interface PickupItemEvent {
 
         ItemStack activeMagnet = player.getInventory().getItem(activeMagnetInventoryIndex);
 
-        // Игрок в креативе уже защищен
         if (player.getAbilities().instabuild) {
             return InteractionResult.PASS;
         }
