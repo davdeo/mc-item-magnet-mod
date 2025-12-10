@@ -59,7 +59,7 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
 
 		if (
 				this.target == null
-						|| this.target.distanceToSqr(thisObj) > this.getSquaredPickupDistance() // ИСПОЛЬЗУЕТСЯ НАСТРОЙКА
+						|| this.target.distanceToSqr(thisObj) > this.getSquaredPickupDistance()
 						|| this.target != nextTarget
 		) {
 			this.target = nextTarget;
