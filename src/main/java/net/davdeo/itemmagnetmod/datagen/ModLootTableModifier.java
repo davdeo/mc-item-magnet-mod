@@ -1,7 +1,7 @@
 package net.davdeo.itemmagnetmod.datagen;
 
 import net.davdeo.itemmagnetmod.item.ModItems;
-import net.davdeo.itemmagnetmod.config.ModConfig; // ДОБАВЛЕН ИМПОРТ КОНФИГА
+import net.davdeo.itemmagnetmod.config.ModConfig;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
