@@ -18,6 +18,12 @@ public class ModConfig {
     // Controls whether the magnet breaks when picking up items
     public boolean isIndestructible = false;
 
+    // Controls whether a Magnet Core can be found in structures
+    public boolean canFindInBastion = true;
+    public boolean canFindInAncientCity = true;
+    public boolean canFindInEndCity = true;
+    public boolean canFindInStrongholdLibrary = true;
+
     private static ModConfig INSTANCE;
 
     public static ModConfig getInstance() {
