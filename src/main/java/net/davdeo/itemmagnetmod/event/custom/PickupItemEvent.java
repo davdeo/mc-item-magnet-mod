@@ -33,7 +33,7 @@ public interface PickupItemEvent {
     static InteractionResult onPickupEvent(Player player, int pickedUpItemsCount) {
         ItemMagnetMod.LOGGER.debug("On pickup event");
 
-        if (ModConfig.getInstance().isIndestructible) {
+        if (ModConfig.isIndestructible) {
             return InteractionResult.PASS;
         }
 
