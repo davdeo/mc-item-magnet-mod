@@ -16,22 +16,22 @@
   "tooltip.itemmagnetmod.magnet_distance": "Керує тим, як далеко діє магніт.",
 
   "option.itemmagnetmod.magnet_durability": "Міцність магніта",
-  "tooltip.itemmagnetmod.magnet_durability": "Керує тм, яка міцність у магніта.",
+  "tooltip.itemmagnetmod.magnet_durability": "Керує тм, яка міцність у магніта.\n§сПотрібен перезапуск§r.",
 
   "option.itemmagnetmod.indestructible": "Незламний мігніт",
   "tooltip.itemmagnetmod.indestructible": "Керує тим, чи ламаєтсья магніт при притягуванні предмета.",
 
   "option.itemmagnetmod.core_in_bastion": "Магнітне ядро в залишках бастіону",
-  "tooltip.itemmagnetmod.core_in_bastion": "Керує тим, чи можна знайти магнітне ядро в залишках бастіонах.",
+  "tooltip.itemmagnetmod.core_in_bastion": "Керує тим, чи можна знайти магнітне ядро в залишках бастіонах.\n§сПотрібен перезапуск§r.",
 
   "option.itemmagnetmod.core_in_ancient_city": "Магнітне ядро в стародавньому місті",
-  "tooltip.itemmagnetmod.core_in_ancient_city": "Керує тим, чи можна знайти магнітне ядро в стародавніх містах.",
+  "tooltip.itemmagnetmod.core_in_ancient_city": "Керує тим, чи можна знайти магнітне ядро в стародавніх містах.\n§сПотрібен перезапуск§r.",
 
   "option.itemmagnetmod.core_in_end_city": "Магнітне ядро в місті Енду",
-  "tooltip.itemmagnetmod.core_in_end_city": "Керує тим, чи можна знайти магнітне ядро в містах Енду.",
+  "tooltip.itemmagnetmod.core_in_end_city": "Керує тим, чи можна знайти магнітне ядро в містах Енду.\n§сПотрібен перезапуск§r.",
 
   "option.itemmagnetmod.core_in_stronghold_library": "Магнітне ядро в бібліотеці цитаделі",
-  "tooltip.itemmagnetmod.core_in_stronghold_library": "Керує тим, чи можна знайти магнітне ядро в бібліотеках цитаделі.",
+  "tooltip.itemmagnetmod.core_in_stronghold_library": "Керує тим, чи можна знайти магнітне ядро в бібліотеках цитаделі.\n§сПотрібен перезапуск§r.",
 
 
   "modmenu.descriptionTranslation.itemmagnetmod": "Цей мод додає в гру магніт для предметів. Його можна вмикати та вимикати, також він втрачає міцність за кожен підібраний предмет."
