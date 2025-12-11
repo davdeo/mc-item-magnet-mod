@@ -10,10 +10,15 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 
+import net.davdeo.itemmagnetmod.config.ModConfig;
+
 public class ModItems {
     private ModItems() {
         super();
     }
+
+    private static final int MAGNET_DURABILITY = ModConfig.magnetDurability;
+
 
     public static final ResourceKey<Item> ITEM_MAGNET_KEY = ResourceKey.create(
             Registries.ITEM,
@@ -22,7 +27,7 @@ public class ModItems {
             new ItemMagnetItem(
                     new Item.Properties()
                             .setId(ITEM_MAGNET_KEY)
-                            .durability(1024)
+                            .durability(MAGNET_DURABILITY)
                             .component(ModComponents.ITEM_MAGNET_ITEM_IS_ACTIVE_COMPONENT, false)
             ),
             ITEM_MAGNET_KEY
