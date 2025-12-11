@@ -12,14 +12,14 @@
   "category.itemmagnetmod.general": "Загальні",
   "category.itemmagnetmod.world_gen": "Генерація світу",
 
-  "option.itemmagnetmod.magnet_distance": "Дальність магніта",
+  "option.itemmagnetmod.magnet_distance": "Дальність магніту",
   "tooltip.itemmagnetmod.magnet_distance": "Керує тим, як далеко діє магніт.",
 
-  "option.itemmagnetmod.magnet_durability": "Міцність магніта",
-  "tooltip.itemmagnetmod.magnet_durability": "Керує тм, яка міцність у магніта.\n§сПотрібен перезапуск§r.",
+  "option.itemmagnetmod.magnet_durability": "Міцність магніту",
+  "tooltip.itemmagnetmod.magnet_durability": "Керує тим, яка міцність у магніту.\n§сПотрібен перезапуск§r.",
 
-  "option.itemmagnetmod.indestructible": "Незламний мігніт",
-  "tooltip.itemmagnetmod.indestructible": "Керує тим, чи ламаєтсья магніт при притягуванні предмета.",
+  "option.itemmagnetmod.indestructible": "Незламний магніт",
+  "tooltip.itemmagnetmod.indestructible": "Керує тим, чи ламається магніт при підбиранні предмета.",
 
   "option.itemmagnetmod.core_in_bastion": "Магнітне ядро в залишках бастіону",
   "tooltip.itemmagnetmod.core_in_bastion": "Керує тим, чи можна знайти магнітне ядро в залишках бастіонах.\n§сПотрібен перезапуск§r.",
