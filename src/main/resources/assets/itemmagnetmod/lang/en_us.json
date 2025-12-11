@@ -16,22 +16,22 @@
   "tooltip.itemmagnetmod.magnet_distance": "Controls how far the magnet works.",
 
   "option.itemmagnetmod.magnet_durability": "Magnet Durability",
-  "tooltip.itemmagnetmod.magnet_durability": "Controls the durability of the magnet.",
+  "tooltip.itemmagnetmod.magnet_durability": "Controls the durability of the magnet.\n§сRequires restart§r.",
 
   "option.itemmagnetmod.indestructible": "Magnet is indestructible",
   "tooltip.itemmagnetmod.indestructible": "Controls whether the magnet breaks when picking up items.",
 
   "option.itemmagnetmod.core_in_bastion": "Magnet Core in Bastion",
-  "tooltip.itemmagnetmod.core_in_bastion": "Controls whether a Magnet Core can be found in Bastions Remnants.",
+  "tooltip.itemmagnetmod.core_in_bastion": "Controls whether a Magnet Core can be found in Bastions Remnants.\n§сRequires restart§r.",
 
   "option.itemmagnetmod.core_in_ancient_city": "Magnet Core in Ancient City",
-  "tooltip.itemmagnetmod.core_in_ancient_city": "Controls whether a Magnet Core can be found in Ancient Cities.",
+  "tooltip.itemmagnetmod.core_in_ancient_city": "Controls whether a Magnet Core can be found in Ancient Cities.\n§сRequires restart§r.",
 
   "option.itemmagnetmod.core_in_end_city": "Magnet Core in End City",
-  "tooltip.itemmagnetmod.core_in_end_city": "Controls whether a Magnet Core can be found in End Cities.",
+  "tooltip.itemmagnetmod.core_in_end_city": "Controls whether a Magnet Core can be found in End Cities.\n§сRequires restart§r.",
 
   "option.itemmagnetmod.core_in_stronghold_library": "Magnet Core in Stronghold Library",
-  "tooltip.itemmagnetmod.core_in_stronghold_library": "Controls whether a Magnet Core can be found in Stronghold Libraries.",
+  "tooltip.itemmagnetmod.core_in_stronghold_library": "Controls whether a Magnet Core can be found in Stronghold Libraries.\n§сRequires restart§r.",
 
 
   "modmenu.descriptionTranslation.itemmagnetmod": "This mod adds an item magnet to the game. It can be toggled on and off, and it loses strength for each item picked up."
