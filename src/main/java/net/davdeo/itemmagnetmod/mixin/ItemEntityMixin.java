@@ -30,7 +30,7 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
 
 	@Unique
 	private double getPickupDistance() {
-		return ModConfig.getInstance().magnetDistance;
+		return ModConfig.magnetDistance;
 	}
 
 	@Unique
