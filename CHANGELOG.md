@@ -1,5 +1,5 @@
 # v2.11
-* Added config to change, edit `itemmagnetmod.properties` in `config` folder, or install [Cloth Config API](https://modrinth.com/mod/cloth-config) and[ Mod Menu](https://modrinth.com/mod/modmenu)
+* Added config to change, edit `itemmagnetmod.properties` in `config` folder, or install [Cloth Config API](https://modrinth.com/mod/cloth-config) and [Mod Menu](https://modrinth.com/mod/modmenu)
 
 # v2.10
 * Update to minecraft version 1.21.11
