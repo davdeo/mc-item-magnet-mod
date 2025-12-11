@@ -3,7 +3,6 @@ package net.davdeo.itemmagnetmod.item;
 import net.davdeo.itemmagnetmod.ItemMagnetMod;
 import net.davdeo.itemmagnetmod.component.ModComponents;
 import net.davdeo.itemmagnetmod.item.custom.ItemMagnetItem;
-import net.davdeo.itemmagnetmod.config.ModConfig;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -11,12 +10,14 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 
+import net.davdeo.itemmagnetmod.config.ModConfig;
+
 public class ModItems {
     private ModItems() {
         super();
     }
 
-    private static final int MAGNET_DURABILITY = ModConfig.getInstance().magnetDurability;
+    private static final int MAGNET_DURABILITY = ModConfig.magnetDurability;
 
 
     public static final ResourceKey<Item> ITEM_MAGNET_KEY = ResourceKey.create(
