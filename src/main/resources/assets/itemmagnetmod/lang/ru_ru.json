@@ -2,10 +2,37 @@
   "item.itemmagnetmod.item_magnet": "Магнит",
   "item.itemmagnetmod.item_magnet.active": "Включён",
   "item.itemmagnetmod.item_magnet.not_active": "Выключен",
-
   "item.itemmagnetmod.item_magnet_broken": "Сломанный магнит",
   "item.itemmagnetmod.magnet_core": "Магнитное ядро",
 
   "itemgroup.item_magnet": "Item Magnet Mod",
+
+
+  "title.itemmagnetmod.config": "Настройки Item Magnet Mod",
+  "category.itemmagnetmod.general": "Общие",
+  "category.itemmagnetmod.world_gen": "Генерация мира",
+
+  "option.itemmagnetmod.magnet_distance": "Дальность магнита",
+  "tooltip.itemmagnetmod.magnet_distance": "Управляет тем, как далеко работает магнит.",
+
+  "option.itemmagnetmod.magnet_durability": "Просность магнита",
+  "tooltip.itemmagnetmod.magnet_durability": "Управляет тем, какая прочность у магнита.",
+
+  "option.itemmagnetmod.indestructible": "Неразрушимый магнит",
+  "tooltip.itemmagnetmod.indestructible": "Управляет тем, ламается ли магнит при подбирании предмета.",
+
+  "option.itemmagnetmod.core_in_bastion": "Магнитное ядро в развалинах бастиона",
+  "tooltip.itemmagnetmod.core_in_bastion": "Управляет тем, можно ли найти магнитное ядро в развалинах бастионах.",
+
+  "option.itemmagnetmod.core_in_ancient_city": "Магнитное ядро в древнем городе",
+  "tooltip.itemmagnetmod.core_in_ancient_city": "Управляет тем, можно ли найти магнитное ядро в древних городах.",
+
+  "option.itemmagnetmod.core_in_end_city": "Магнитное ядро в зндер-городе",
+  "tooltip.itemmagnetmod.core_in_end_city": "Управляет тем, можно ли найти магнитное ядро в эндер-городах.",
+
+  "option.itemmagnetmod.core_in_stronghold_library": "Магнитное ядро в библиотеке крепости",
+  "tooltip.itemmagnetmod.core_in_stronghold_library": "Управляет тем, можно ли найти магнитное ядро в библиотеках крепостей.",
+
+
   "modmenu.descriptionTranslation.itemmagnetmod": "Этот мод добавляет в игру магнит для предметов. Его можно включать и выключать, также он теряет прочность за каждый подобранный предмет."
 }
