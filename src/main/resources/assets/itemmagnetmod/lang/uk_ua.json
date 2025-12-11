@@ -2,10 +2,37 @@
   "item.itemmagnetmod.item_magnet": "Магніт",
   "item.itemmagnetmod.item_magnet.active": "Увімкнений",
   "item.itemmagnetmod.item_magnet.not_active": "Вимкнений",
-
   "item.itemmagnetmod.item_magnet_broken": "Зламаний магніт",
   "item.itemmagnetmod.magnet_core": "Магнітне ядро",
 
   "itemgroup.item_magnet": "Item Magnet Mod",
+
+
+  "title.itemmagnetmod.config": "Налаштування Item Magnet Mod",
+  "category.itemmagnetmod.general": "Загальні",
+  "category.itemmagnetmod.world_gen": "Генерація світу",
+
+  "option.itemmagnetmod.magnet_distance": "Дальність магніта",
+  "tooltip.itemmagnetmod.magnet_distance": "Керує тим, як далеко діє магніт.",
+
+  "option.itemmagnetmod.magnet_durability": "Міцність магніта",
+  "tooltip.itemmagnetmod.magnet_durability": "Керує тм, яка міцність у магніта.",
+
+  "option.itemmagnetmod.indestructible": "Незламний мігніт",
+  "tooltip.itemmagnetmod.indestructible": "Керує тим, чи ламаєтсья магніт при притягуванні предмета.",
+
+  "option.itemmagnetmod.core_in_bastion": "Магнітне ядро в залишках бастіону",
+  "tooltip.itemmagnetmod.core_in_bastion": "Керує тим, чи можна знайти магнітне ядро в залишках бастіонах.",
+
+  "option.itemmagnetmod.core_in_ancient_city": "Магнітне ядро в стародавньому місті",
+  "tooltip.itemmagnetmod.core_in_ancient_city": "Керує тим, чи можна знайти магнітне ядро в стародавніх містах.",
+
+  "option.itemmagnetmod.core_in_end_city": "Магнітне ядро в місті Енду",
+  "tooltip.itemmagnetmod.core_in_end_city": "Керує тим, чи можна знайти магнітне ядро в містах Енду.",
+
+  "option.itemmagnetmod.core_in_stronghold_library": "Магнітне ядро в бібліотеці цитаделі",
+  "tooltip.itemmagnetmod.core_in_stronghold_library": "Керує тим, чи можна знайти магнітне ядро в бібліотеках цитаделі.",
+
+
   "modmenu.descriptionTranslation.itemmagnetmod": "Цей мод додає в гру магніт для предметів. Його можна вмикати та вимикати, також він втрачає міцність за кожен підібраний предмет."
 }
