@@ -22,7 +22,7 @@
   "tooltip.itemmagnetmod.indestructible": "Управляет тем, ломается ли магнит при подбирании предмета.",
 
   "option.itemmagnetmod.core_in_bastion": "Магнитное ядро в развалинах бастиона",
-  "tooltip.itemmagnetmod.core_in_bastion": "Управляет тем, можно ли найти магнитное ядро в развалинах бастионах.\n§сНужен перезапуск§r.",
+  "tooltip.itemmagnetmod.core_in_bastion": "Управляет тем, можно ли найти магнитное ядро в развалинах бастионов.\n§сНужен перезапуск§r.",
 
   "option.itemmagnetmod.core_in_ancient_city": "Магнитное ядро в древнем городе",
   "tooltip.itemmagnetmod.core_in_ancient_city": "Управляет тем, можно ли найти магнитное ядро в древних городах.\n§сНужен перезапуск§r.",
