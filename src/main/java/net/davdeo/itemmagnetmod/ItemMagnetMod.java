@@ -17,7 +17,7 @@ public class ItemMagnetMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ModConfig.getInstance();
+		ModConfig.loadConfig();
 
 		ModItems.registerModItems();
 		ModItemGroups.registerItemGroups();
