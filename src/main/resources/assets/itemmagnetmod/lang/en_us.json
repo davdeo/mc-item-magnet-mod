@@ -21,7 +21,7 @@
   "option.itemmagnetmod.indestructible": "Magnet is indestructible",
   "tooltip.itemmagnetmod.indestructible": "Controls whether the magnet breaks when picking up items.",
 
-  "option.itemmagnetmod.core_in_bastion": "Magnet Core in Bastion",
+  "option.itemmagnetmod.core_in_bastion": "Magnet Core in Bastion Remnants",
   "tooltip.itemmagnetmod.core_in_bastion": "Controls whether a Magnet Core can be found in Bastions Remnants.\n§сRequires restart§r.",
 
   "option.itemmagnetmod.core_in_ancient_city": "Magnet Core in Ancient City",
