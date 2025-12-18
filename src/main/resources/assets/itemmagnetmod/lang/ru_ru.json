@@ -18,8 +18,8 @@
   "option.itemmagnetmod.magnet_durability": "Прочность магнита",
   "tooltip.itemmagnetmod.magnet_durability": "Управляет тем, какая прочность у магнита.\n§сНужен перезапуск§r.",
 
-  "option.itemmagnetmod.indestructible": "Неразрушимый магнит",
-  "tooltip.itemmagnetmod.indestructible": "Управляет тем, ломается ли магнит при подбирании предмета.",
+  "option.itemmagnetmod.indestructible": "Магнит неразрушимый",
+  "tooltip.itemmagnetmod.indestructible": "Управляет тем, ломается ли магнит при подбирании предметов.",
 
   "option.itemmagnetmod.core_in_bastion": "Магнитное ядро в развалинах бастиона",
   "tooltip.itemmagnetmod.core_in_bastion": "Управляет тем, можно ли найти магнитное ядро в развалинах бастионов.\n§сНужен перезапуск§r.",
