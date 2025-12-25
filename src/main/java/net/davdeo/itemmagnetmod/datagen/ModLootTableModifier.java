@@ -1,6 +1,7 @@
 package net.davdeo.itemmagnetmod.datagen;
 
 import net.davdeo.itemmagnetmod.item.ModItems;
+import net.davdeo.itemmagnetmod.config.ModConfig;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
@@ -33,15 +34,32 @@ public class ModLootTableModifier {
     }
 
     public static void modifyLootTables() {
-        registerChestLoot(BuiltInLootTables.BASTION_TREASURE, 2, 0.35f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
-        registerChestLoot(BuiltInLootTables.BASTION_BRIDGE, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
-        registerChestLoot(BuiltInLootTables.BASTION_HOGLIN_STABLE, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
-        registerChestLoot(BuiltInLootTables.BASTION_OTHER, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        if (ModConfig.canFindInBastion) {
+            registerChestLoot(BuiltInLootTables.BASTION_TREASURE, 2, 0.35f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        }
 
-        registerChestLoot(BuiltInLootTables.ANCIENT_CITY, 1, 0.35f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        if (ModConfig.canFindInBastion) {
+            registerChestLoot(BuiltInLootTables.BASTION_BRIDGE, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        }
 
-        registerChestLoot(BuiltInLootTables.END_CITY_TREASURE, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        if (ModConfig.canFindInBastion) {
+            registerChestLoot(BuiltInLootTables.BASTION_HOGLIN_STABLE, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        }
 
-        registerChestLoot(BuiltInLootTables.STRONGHOLD_LIBRARY, 1, 0.1f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        if (ModConfig.canFindInBastion) {
+            registerChestLoot(BuiltInLootTables.BASTION_OTHER, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        }
+
+        if (ModConfig.canFindInAncientCity) {
+            registerChestLoot(BuiltInLootTables.ANCIENT_CITY, 1, 0.35f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        }
+
+        if (ModConfig.canFindInEndCity) {
+            registerChestLoot(BuiltInLootTables.END_CITY_TREASURE, 1, 0.15f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        }
+
+        if (ModConfig.canFindInStrongholdLibrary) {
+            registerChestLoot(BuiltInLootTables.STRONGHOLD_LIBRARY, 1, 0.1f, 1.0f, 1.0f, ModItems.MAGNET_CORE);
+        }
     }
 }
