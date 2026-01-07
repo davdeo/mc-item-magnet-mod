@@ -13,7 +13,7 @@ public class ItemMagnetHelper {
         super();
     }
 
-    public static final int getFirstActiveMagnetInventoryIndex(Player player) {
+    public static int getFirstActiveMagnetInventoryIndex(Player player) {
         List<Integer> indices = InventoryUtil.getInventoryIndices(player, ModItems.ITEM_MAGNET);
 
         for (int inventoryIndex : indices) {
@@ -25,6 +25,13 @@ public class ItemMagnetHelper {
         }
 
         return -1;
+    }
+
+    public static List<ItemStack> getAllMagnets(Player player) {
+        List<Integer> indices = InventoryUtil.getInventoryIndices(player, ModItems.ITEM_MAGNET);
+        return indices.stream().map((index) -> {
+            return player.getInventory().getItem(index);
+        }).toList();
     }
 
     public static Player getClosestPlayerWithActiveMagnet(Level world, Entity target) {
@@ -50,10 +57,16 @@ public class ItemMagnetHelper {
     }
 
 
-    public static void toggleIsActive(ItemStack stack) {
+    public static void toggleIsActive(ItemStack stack, Player player) {
         boolean isActive = ItemMagnetHelper.getIsActive(stack);
 
-        stack.set(ModComponents.ITEM_MAGNET_ITEM_IS_ACTIVE_COMPONENT, !isActive);
+        getAllMagnets(player).forEach((magnet) -> {
+            magnet.set(ModComponents.ITEM_MAGNET_ITEM_IS_ACTIVE_COMPONENT, false);
+        });
+
+        if (!isActive) {
+            stack.set(ModComponents.ITEM_MAGNET_ITEM_IS_ACTIVE_COMPONENT, true);
+        }
     }
 
     public static boolean getIsActive(ItemStack stack) {

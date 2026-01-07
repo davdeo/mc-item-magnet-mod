@@ -1,13 +1,17 @@
 package net.davdeo.itemmagnetmod.mixin;
 
-import net.davdeo.itemmagnetmod.event.custom.PickupItemEvent;
+import net.davdeo.itemmagnetmod.ItemMagnetMod;
+import net.davdeo.itemmagnetmod.item.ModItems;
 import net.davdeo.itemmagnetmod.util.ItemMagnetHelper;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.TraceableEntity;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -16,8 +20,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import static net.davdeo.itemmagnetmod.util.ItemMagnetHelper.getIsActive;
 
 
 @Mixin(value = ItemEntity.class, priority = 1002)
@@ -116,6 +121,13 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
 	@Unique
 	private int stackCountBeforePickup = 0;
 
+	@Unique
+	private ItemStack cachedMagnetStack = ItemStack.EMPTY;
+	@Unique
+	private int cachedInventoryIndex = -1;
+	@Unique
+	private int cachedTickCount = 0;
+
 	/**
 	 * Captures the stack count BEFORE the insertStack call.
 	 * Injects at the beginning of onPlayerCollision.
@@ -128,7 +140,7 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
 			),
 			method = "playerTouch"
 	)
-	private void captureStackCountBefore(Player player, CallbackInfo ci) {
+	private void beforeItemPickup(Player player, CallbackInfo ci) {
 		ItemEntity thisObj = (ItemEntity)(Object)this;
 		this.stackCountBeforePickup = thisObj.getItem().getCount();
 	}
@@ -145,13 +157,69 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
 			),
 			method = "playerTouch"
 	)
-	private void onItemPickup(Player player, CallbackInfo ci) {
+	private void afterItemPickup(Player player, CallbackInfo ci) {
+		if (player.getAbilities().instabuild) {
+			return;
+		}
+
 		ItemEntity thisObj = (ItemEntity)(Object)this;
 		int stackCountAfterPickup = thisObj.getItem().getCount();
 		int pickedUpItemsCount = this.stackCountBeforePickup - stackCountAfterPickup;
 
-		if (pickedUpItemsCount > 0) {
-			PickupItemEvent.EVENT.invoker().onPickup(player, pickedUpItemsCount);
+		if (Math.abs(tickCount - cachedTickCount) > 50 && (cachedMagnetStack.isEmpty() || !ItemMagnetHelper.getIsActive(cachedMagnetStack))) {
+			ItemMagnetMod.LOGGER.debug("Revalidate cached magnet");
+
+			cachedTickCount = tickCount;
+			cachedInventoryIndex = ItemMagnetHelper.getFirstActiveMagnetInventoryIndex(player);
+
+			if (cachedInventoryIndex == -1) {
+				cachedMagnetStack = ItemStack.EMPTY;
+				return;
+			}
+
+			cachedMagnetStack = player.getInventory().getItem(cachedInventoryIndex);
+		}
+
+
+		if (getIsActive(cachedMagnetStack)) {
+			if (pickedUpItemsCount > 0) {
+				ItemMagnetMod.LOGGER.debug("Reduce durability");
+
+				ServerPlayer serverPlayer = null;
+				if (player instanceof ServerPlayer serverPlayerEntity) {
+					serverPlayer = serverPlayerEntity;
+				}
+
+				int newDamage = cachedMagnetStack.getDamageValue() + pickedUpItemsCount;
+
+				if (serverPlayer != null && pickedUpItemsCount != 0) {
+					CriteriaTriggers.ITEM_DURABILITY_CHANGED.trigger(serverPlayer, cachedMagnetStack, newDamage);
+				}
+
+				cachedMagnetStack.setDamageValue(newDamage);
+
+				if (newDamage >= cachedMagnetStack.getMaxDamage()) {
+					ItemMagnetMod.LOGGER.debug("Break magnet");
+
+					cachedMagnetStack.shrink(1);
+
+					player.getInventory().setItem(cachedInventoryIndex, new ItemStack(ModItems.ITEM_MAGNET_BROKEN));
+
+					if (serverPlayer != null && !serverPlayer.level().isClientSide()) {
+						serverPlayer.level().playSound(
+								null,
+								serverPlayer.blockPosition(),
+								SoundEvents.ITEM_BREAK.value(),
+								SoundSource.PLAYERS,
+								1f, 1f
+						);
+					}
+				}
+			} else {
+				ItemMagnetMod.LOGGER.debug("Disable magnet");
+
+				ItemMagnetHelper.toggleIsActive(cachedMagnetStack, player);
+			}
 		}
 	}
 }

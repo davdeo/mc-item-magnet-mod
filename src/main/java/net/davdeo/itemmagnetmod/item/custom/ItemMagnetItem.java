@@ -28,7 +28,7 @@ public class ItemMagnetItem extends Item {
         Consumable consumableComponent = itemStack.get(DataComponents.CONSUMABLE);
 
         if(!world.isClientSide()) {
-            ItemMagnetHelper.toggleIsActive(itemStack);
+            ItemMagnetHelper.toggleIsActive(itemStack, player);
         }
 
         if (consumableComponent != null) {
