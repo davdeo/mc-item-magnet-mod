@@ -31,7 +31,7 @@
 		"itemmagnetmod.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=${project.modloader_version}",
+		"fabricloader": ">=${project.loader_version}",
 		"minecraft": "~${project.minecraft_version}",
 		"java": ">=21",
 		"fabric-api": "*",
