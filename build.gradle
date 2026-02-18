@@ -36,14 +36,6 @@ dependencies {
 	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
 }
 
-processResources {
-	inputs.property "version", project.version
-
-	filesMatching("fabric.mod.json") {
-		expand "version": project.version
-	}
-}
-
 tasks.withType(JavaCompile).configureEach {
 	it.options.release = 21
 }
@@ -63,6 +55,22 @@ jar {
 		rename { "${it}_${project.base.archivesName.get()}"}
 	}
 }
+
+processResources {
+	def resourceTargets = [
+			"version": project.version,
+			"minecraft_version": project.minecraft_version,
+			"loader_version": project.loader_version,
+			"java_version": project.java_version
+	]
+
+	inputs.properties(resourceTargets)
+
+	filesMatching("fabric.mod.json") {
+		expand resourceTargets
+	}
+}
+
 
 // configure the maven publication
 publishing {
