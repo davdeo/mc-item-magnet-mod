@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:iron_ingot",
+  "base": "itemmagnetmod:item_magnet_broken",
+  "result": {
+    "id": "itemmagnetmod:magnet_core"
+  }
+}
