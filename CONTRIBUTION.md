@@ -19,25 +19,22 @@ the release.
 # Update Guide
 * Update gradle.properties in accordance to: https://fabricmc.net/develop/
     * minecraft_version
-    * yarn_mappings
     * loader_version
     * fabric_version
+    * java_version (if in the game has updated Java`s version)
 * Update Loom version in build.gradle
 ```
 plugins {
-    id 'fabric-loom' version 'x.x-SNAPSHOT'
+    	id 'net.fabricmc.fabric-loom-remap' version 'x.xx-SNAPSHOT'
     ...
 }
 ```
 * Delete / clear `remappedSrc` directory
-* Update yarn mappings with this command
-  `./gradlew migrateMappings --mappings "xxx"`
 * In case the used gradle version is not compatible
   * Update the `distributionUrl` in `gradle/wrapper/gradle-wrapper.propperties` 
   * Check here for changes to the gradle version in loom: https://github.com/FabricMC/fabric-loom/releases
   * Try migrateMappings again
 * Sync gradle projects (refresh icon in gradle area of IDE)
-* Update minecraft dependencies in `src/main/resources/fabric.mod.json`
 * Update minecraft version in `.github/workflows/deploy.yml`
 * Run the gradle task `fabric/genSources` to generate the minecraft sources.
 * Run the client with `fabric/runClient`
