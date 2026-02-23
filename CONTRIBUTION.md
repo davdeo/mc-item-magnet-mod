@@ -39,7 +39,7 @@ plugins {
   * Check here for changes to the gradle version in loom: https://github.com/FabricMC/fabric-loom/releases
   * Try migrateMappings again
 * Sync gradle projects (refresh icon in gradle area of IDE)
-*  Update minecraft dependencies in `gradle.properties`
+* Update minecraft dependencies in `gradle.properties`
 * Update minecraft version in `.github/workflows/deploy.yml`
 * Run the gradle task `fabric/genSources` to generate the minecraft sources.
 * Run the client with `fabric/runClient`
