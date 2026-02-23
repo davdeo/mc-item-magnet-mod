@@ -7,7 +7,7 @@ the release.
 
 # Release Guide
 * Create release branch from develop `release/<major>.<minor>`
-* Update `deploy.yml` & `src/main/resources/fabric.mod.json` to match the latest release information.
+* Update `deploy.yml` & `gradle.properties` to match the latest release information.
 * Update `CHANGELOG.md` with the latest changes.
 * Manually build and test everything!
   * Run `clean` & `build` -> Built mod should be located in `build/libs/itemmagnetmod-x.x.jar`
