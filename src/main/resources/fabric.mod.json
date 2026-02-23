@@ -25,6 +25,9 @@
 		],
 		"fabric-datagen": [
 			"net.davdeo.itemmagnetmod.ItemMagnetModDataGenerator"
+		],
+		"modmenu": [
+			"net.davdeo.itemmagnetmod.config.ModMenuIntegration"
 		]
 	},
 	"mixins": [
