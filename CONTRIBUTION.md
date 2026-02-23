@@ -21,10 +21,11 @@ the release.
     * minecraft_version
     * loader_version
     * fabric_version
-  * And this, accordance to the latest versions of the mod for the current game
+  * This accordance to the latest versions of the mod for the current game
     * cloth_config_version
     * modmenu_versio
-    * java_version (if in the game has updated Java`s version)
+  * And this, if the game uses a newer version of Java
+    * java_version
 * Update Loom version in build.gradle
 ```
 plugins {
