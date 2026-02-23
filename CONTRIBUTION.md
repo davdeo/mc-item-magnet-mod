@@ -21,6 +21,9 @@ the release.
     * minecraft_version
     * loader_version
     * fabric_version
+  * And this, accordance to the latest versions of the mod for the current game
+    * cloth_config_version
+    * modmenu_versio
     * java_version (if in the game has updated Java`s version)
 * Update Loom version in build.gradle
 ```
@@ -35,6 +38,7 @@ plugins {
   * Check here for changes to the gradle version in loom: https://github.com/FabricMC/fabric-loom/releases
   * Try migrateMappings again
 * Sync gradle projects (refresh icon in gradle area of IDE)
+*  Update minecraft dependencies in `gradle.properties`
 * Update minecraft version in `.github/workflows/deploy.yml`
 * Run the gradle task `fabric/genSources` to generate the minecraft sources.
 * Run the client with `fabric/runClient`
