@@ -1,7 +1,7 @@
 package net.davdeo.itemmagnetmod.item;
 
 import net.davdeo.itemmagnetmod.ItemMagnetMod;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -9,14 +9,14 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
-public class ModItemGroups {
-    private ModItemGroups() {
+public class ModCreativeTab {
+    private ModCreativeTab() {
         super();
     }
 
     public static final CreativeModeTab ITEM_MAGNET_GROUP = Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB,
             Identifier.fromNamespaceAndPath(ItemMagnetMod.MOD_ID, "item_magnet"),
-            FabricItemGroup.builder().title(Component.translatable("itemgroup.item_magnet"))
+            FabricCreativeModeTab.builder().title(Component.translatable("itemgroup.item_magnet"))
                     .icon(() -> new ItemStack(ModItems.ITEM_MAGNET)).displayItems((displayContext, entries) -> {
                         entries.accept(ModItems.ITEM_MAGNET);
                         entries.accept(ModItems.ITEM_MAGNET_BROKEN);
