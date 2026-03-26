@@ -1,7 +1,5 @@
 package net.davdeo.itemmagnetmod.config;
 
-import net.minecraft.client.gui.screens.Screen;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
