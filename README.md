@@ -11,8 +11,8 @@ The Item Magnet is intended to be a late game item, therefore it is not easy to 
 
 ### Required software
 
-- Java: 21.0.6
-- Gradle: 9.2.1
+- Java: 25.0.1
+- Gradle: 9.4.0
 
 ### Setup
 
