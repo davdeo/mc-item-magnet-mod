@@ -29,7 +29,7 @@ the release.
 * Update Loom version in build.gradle
 ```
 plugins {
-    	id 'net.fabricmc.fabric-loom-remap' version 'x.xx-SNAPSHOT'
+    	id 'net.fabricmc.fabric-loom' version 'x.xx-SNAPSHOT'
     ...
 }
 ```
