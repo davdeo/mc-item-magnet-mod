@@ -19,7 +19,7 @@ public class ModConfigGui {
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
         general.addEntry(entryBuilder.startIntField(Component.translatable("option.itemmagnetmod.magnet_distance"), ModConfig.magnetDistance)
-                .setDefaultValue(7)
+                .setDefaultValue(32)
                 .setTooltip(Component.translatable("tooltip.itemmagnetmod.magnet_distance"))
                 .setSaveConsumer(newValue -> ModConfig.magnetDistance = newValue)
                 .setMin(1)
