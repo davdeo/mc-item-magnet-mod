@@ -18,6 +18,8 @@ public class ModItems {
     }
 
     private static final int MAGNET_DURABILITY = ModConfig.magnetDurability;
+    private static final int MAGNET_CORE_STACK = ModConfig.brokenMagnetStack;
+    private static final int BROKEN_MAGNET_STACK = ModConfig.magnetCoreStack;
 
 
     public static final ResourceKey<Item> ITEM_MAGNET_KEY = ResourceKey.create(
@@ -40,7 +42,7 @@ public class ModItems {
             new Item(
                     new Item.Properties()
                             .setId(ITEM_MAGNET_BROKEN_KEY)
-                            .stacksTo(1)
+                            .stacksTo(BROKEN_MAGNET_STACK)
             ),
             ITEM_MAGNET_BROKEN_KEY
     );
@@ -52,7 +54,7 @@ public class ModItems {
             new Item(
                     new Item.Properties()
                             .setId(MAGNET_CORE_KEY)
-                            .stacksTo(1)
+                            .stacksTo(MAGNET_CORE_STACK)
             ),
             MAGNET_CORE_KEY
     );
