@@ -38,6 +38,7 @@ public class ModConfigGui {
                 .setTooltip(Component.translatable("tooltip.itemmagnetmod.broken_magnet_stack"))
                 .setSaveConsumer(newValue -> ModConfig.brokenMagnetStack = newValue)
                 .setMin(1)
+                .setMax(64)
                 .build());
 
         general.addEntry(entryBuilder.startIntField(Component.translatable("option.itemmagnetmod.magnet_core_stack"), ModConfig.magnetCoreStack)
@@ -45,6 +46,7 @@ public class ModConfigGui {
                 .setTooltip(Component.translatable("tooltip.itemmagnetmod.magnet_core_stack"))
                 .setSaveConsumer(newValue -> ModConfig.magnetCoreStack = newValue)
                 .setMin(1)
+                .setMax(64)
                 .build());
         
         general.addEntry(entryBuilder.startBooleanToggle(Component.translatable("option.itemmagnetmod.indestructible"), ModConfig.isIndestructible)
