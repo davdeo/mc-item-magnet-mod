@@ -9,7 +9,7 @@ import java.util.Properties;
 public class ModConfig {
     private static final String CONFIG_FILE_PATH = "config/itemmagnetmod.properties";
 
-    public static int magnetDistance = 7;
+    public static int magnetDistance = 32;
     public static int magnetDurability = 1024;
     public static boolean isIndestructible = false;
     public static boolean canFindInBastion = true;
