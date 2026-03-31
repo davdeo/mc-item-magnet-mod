@@ -11,6 +11,8 @@ public class ModConfig {
 
     public static int magnetDistance = 32;
     public static int magnetDurability = 1024;
+    public static int brokenMagnetStack = 1;
+    public static int magnetCoreStack = 1;
     public static boolean isIndestructible = false;
     public static boolean canFindInBastion = true;
     public static boolean canFindInAncientCity = true;
@@ -27,6 +29,8 @@ public class ModConfig {
 
                 magnetDistance = getInt(properties, "magnetDistance", magnetDistance);
                 magnetDurability = getInt(properties, "magnetDurability", magnetDurability);
+                brokenMagnetStack = getInt(properties, "brokenMagnetStack", brokenMagnetStack);
+                magnetCoreStack = getInt(properties, "magnetCoreStack", magnetCoreStack);
                 isIndestructible = getBool(properties, "isIndestructible", isIndestructible);
                 canFindInBastion = getBool(properties, "canFindInBastion", canFindInBastion);
                 canFindInAncientCity = getBool(properties, "canFindInAncientCity", canFindInAncientCity);
@@ -45,6 +49,8 @@ public class ModConfig {
         Properties properties = new Properties();
         properties.setProperty("magnetDistance", String.valueOf(magnetDistance));
         properties.setProperty("magnetDurability", String.valueOf(magnetDurability));
+        properties.setProperty("brokenMagnetStack", String.valueOf(brokenMagnetStack));
+        properties.setProperty("magnetCoreStack", String.valueOf(magnetCoreStack));
         properties.setProperty("isIndestructible", String.valueOf(isIndestructible));
         properties.setProperty("canFindInBastion", String.valueOf(canFindInBastion));
         properties.setProperty("canFindInAncientCity", String.valueOf(canFindInAncientCity));
