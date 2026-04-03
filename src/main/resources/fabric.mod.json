@@ -11,6 +11,7 @@
 		"StarmanMine142"
 	],
 	"contact": {
+		"homepage":"https://modrinth.com/mod/davdeos-item-magnet",
 		"sources": "https://github.com/davdeo/mc-item-magnet-mod",
 		"issues": "https://github.com/davdeo/mc-item-magnet-mod/issues"
 	},
@@ -36,7 +37,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=${loader_version}",
-		"minecraft": "~${minecraft_version}",
+		"minecraft": "~${min_minecraft_version}",
 		"java": ">=${java_version}",
 		"fabric-api": "*"
 	},
