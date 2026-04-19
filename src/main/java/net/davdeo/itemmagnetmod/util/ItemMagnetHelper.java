@@ -2,11 +2,10 @@ package net.davdeo.itemmagnetmod.util;
 
 import net.davdeo.itemmagnetmod.component.ModComponents;
 import net.davdeo.itemmagnetmod.item.ModItems;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import java.util.List;
 
 public class ItemMagnetHelper {
@@ -14,11 +13,11 @@ public class ItemMagnetHelper {
         super();
     }
 
-    public static final int getFirstActiveMagnetInventoryIndex(PlayerEntity player) {
+    public static final int getFirstActiveMagnetInventoryIndex(Player player) {
         List<Integer> indices = InventoryUtil.getInventoryIndices(player, ModItems.ITEM_MAGNET);
 
         for (int inventoryIndex : indices) {
-            ItemStack stack =  player.getInventory().getStack(inventoryIndex);
+            ItemStack stack =  player.getInventory().getItem(inventoryIndex);
 
             if (ItemMagnetHelper.getIsActive(stack)) {
                 return inventoryIndex;
@@ -28,12 +27,12 @@ public class ItemMagnetHelper {
         return -1;
     }
 
-    public static PlayerEntity getClosestPlayerWithActiveMagnet(World world, Entity target) {
-        List<? extends  PlayerEntity> playersWithActiveMagnet = world.getPlayers().stream().filter(playerEntity -> {
+    public static Player getClosestPlayerWithActiveMagnet(Level world, Entity target) {
+        List<? extends  Player> playersWithActiveMagnet = world.players().stream().filter(playerEntity -> {
             int magnetInventoryPosition = ItemMagnetHelper.getFirstActiveMagnetInventoryIndex(playerEntity);
 
             if (magnetInventoryPosition != -1) {
-                ItemStack stack = playerEntity.getInventory().getStack(magnetInventoryPosition);
+                ItemStack stack = playerEntity.getInventory().getItem(magnetInventoryPosition);
 
                 return ItemMagnetHelper.getIsActive(stack);
             }

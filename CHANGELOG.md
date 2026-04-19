@@ -1,3 +1,7 @@
+# v3.0
+* Update to minecraft version 26.1
+* Added config file and screen, can be opened using Mod Menu. _**Optional**_: Install [Cloth Config API](https://modrinth.com/mod/cloth-config) and [Mod Menu](https://modrinth.com/mod/modmenu)
+
 # v2.10
 * Update to minecraft version 1.21.11
 * Fix bug with game crash when using yyz's backpacks mod

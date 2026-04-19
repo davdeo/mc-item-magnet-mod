@@ -7,7 +7,7 @@ the release.
 
 # Release Guide
 * Create release branch from develop `release/<major>.<minor>`
-* Update `deploy.yml` & `src/main/resources/fabric.mod.json` to match the latest release information.
+* Update `deploy.yml` & `gradle.properties` to match the latest release information.
 * Update `CHANGELOG.md` with the latest changes.
 * Manually build and test everything!
   * Run `clean` & `build` -> Built mod should be located in `build/libs/itemmagnetmod-x.x.jar`
@@ -18,26 +18,27 @@ the release.
 
 # Update Guide
 * Update gradle.properties in accordance to: https://fabricmc.net/develop/
-    * minecraft_version
-    * yarn_mappings
-    * loader_version
-    * fabric_version
-* Update Loom version in build.gradle
+  * minecraft_version
+  * loader_version
+  * fabric_version
+* This accordance to the latest versions of the mod for the current game
+  * cloth-config version
+  * mod-menu version
+* And this, if the game uses a newer version of Java
+  * java_version
 ```
 plugins {
-    id 'fabric-loom' version 'x.x-SNAPSHOT'
+    	id 'net.fabricmc.fabric-loom' version 'x.xx-SNAPSHOT'
     ...
 }
 ```
 * Delete / clear `remappedSrc` directory
-* Update yarn mappings with this command
-  `./gradlew migrateMappings --mappings "xxx"`
 * In case the used gradle version is not compatible
   * Update the `distributionUrl` in `gradle/wrapper/gradle-wrapper.propperties` 
   * Check here for changes to the gradle version in loom: https://github.com/FabricMC/fabric-loom/releases
   * Try migrateMappings again
 * Sync gradle projects (refresh icon in gradle area of IDE)
-* Update minecraft dependencies in `src/main/resources/fabric.mod.json`
+* Update minecraft dependencies in `gradle.properties`
 * Update minecraft version in `.github/workflows/deploy.yml`
 * Run the gradle task `fabric/genSources` to generate the minecraft sources.
 * Run the client with `fabric/runClient`
