@@ -11,7 +11,9 @@
 		"StarmanMine142"
 	],
 	"contact": {
-		"sources": "https://github.com/davdeo/mc-item-magnet-mod.git"
+		"homepage":"https://modrinth.com/mod/davdeos-item-magnet",
+		"sources": "https://github.com/davdeo/mc-item-magnet-mod",
+		"issues": "https://github.com/davdeo/mc-item-magnet-mod/issues"
 	},
 	"license": "MIT",
 	"icon": "assets/itemmagnetmod/mod_icon.png",
@@ -31,9 +33,9 @@
 		"itemmagnetmod.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.18.0",
-		"minecraft": "~1.21.11",
-		"java": ">=21",
+		"fabricloader": ">=${min_loader_version}",
+		"minecraft": "~${min_minecraft_version}",
+		"java": ">=${java_version}",
 		"fabric-api": "*"
 	},
 	"suggests": {

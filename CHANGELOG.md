@@ -1,3 +1,6 @@
+# v3.0
+* Update to minecraft version 26.1
+
 # v2.10
 * Update to minecraft version 1.21.11
 * Fix bug with game crash when using yyz's backpacks mod

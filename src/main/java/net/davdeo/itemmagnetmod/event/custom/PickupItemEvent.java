@@ -48,9 +48,11 @@ public interface PickupItemEvent {
             serverPlayer = serverPlayerEntity;
         }
 
-        int newDamage = activeMagnet.getDamageValue() + pickedUpItemsCount;
+        int damageToApply = pickedUpItemsCount;
+        int newDamage = activeMagnet.getDamageValue() + damageToApply;
 
-        if (serverPlayer != null && pickedUpItemsCount != 0) {
+
+        if (serverPlayer != null && damageToApply != 0) {
             CriteriaTriggers.ITEM_DURABILITY_CHANGED.trigger(serverPlayer, activeMagnet, newDamage);
         }
 
