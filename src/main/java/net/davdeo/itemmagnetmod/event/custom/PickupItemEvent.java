@@ -33,7 +33,7 @@ public interface PickupItemEvent {
     static InteractionResult onPickupEvent(Player player, int pickedUpItemsCount) {
         ItemMagnetMod.LOGGER.debug("On pickup event");
 
-        if (ModConfig.isIndestructible) {
+        if (ModConfig.isIndestructible || player.getAbilities().instabuild) {
             return InteractionResult.PASS;
         }
 
@@ -45,10 +45,6 @@ public interface PickupItemEvent {
 
         ItemStack activeMagnet = player.getInventory().getItem(activeMagnetInventoryIndex);
 
-        if (player.getAbilities().instabuild) {
-            return InteractionResult.PASS;
-        }
-
         ServerPlayer serverPlayer = null;
         if (player instanceof ServerPlayer serverPlayerEntity) {
             serverPlayer = serverPlayerEntity;
@@ -56,7 +52,6 @@ public interface PickupItemEvent {
 
         int damageToApply = pickedUpItemsCount;
         int newDamage = activeMagnet.getDamageValue() + damageToApply;
-
 
         if (serverPlayer != null && damageToApply != 0) {
             CriteriaTriggers.ITEM_DURABILITY_CHANGED.trigger(serverPlayer, activeMagnet, newDamage);

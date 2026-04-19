@@ -59,8 +59,8 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
 
 		if (
 				this.target == null
-						|| this.target.distanceToSqr(thisObj) > this.getSquaredPickupDistance()
-						|| this.target != nextTarget
+				|| this.target.distanceToSqr(thisObj) > this.getSquaredPickupDistance()
+				|| this.target != nextTarget
 		) {
 			this.target = nextTarget;
 		}
@@ -72,23 +72,23 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
 	 * The velocity towards the target is getting higher the closer the entity is to the target.
 	 * The logic used here is inspired by the behaviour of the ExperienceOrbEntity.
 	 *
-	 * public void tick() {
-	 * ...
-	 * this.prevX = this.getX();
-	 * this.prevY = this.getY();
-	 * this.prevZ = this.getZ();
-	 * Vec3d vec3d = this.getVelocity();
+	 * 	public void tick() {
+	 * 	...
+	 * 		this.prevX = this.getX();
+	 * 		this.prevY = this.getY();
+	 * 		this.prevZ = this.getZ();
+	 * 		Vec3d vec3d = this.getVelocity();
 	 *
-	 * ---> Inject here. After call to getVelocity and before applying any movement
+	 * 		---> Inject here. After call to getVelocity and before applying any movement
 	 *
-	 * if (this.isTouchingWater() && this.getFluidHeight(FluidTags.WATER) > 0.10000000149011612) {
-	 * this.applyWaterBuoyancy();
-	 * } else if (this.isInLava() && this.getFluidHeight(FluidTags.LAVA) > 0.10000000149011612) {
-	 * this.applyLavaBuoyancy();
-	 * } else {
-	 * this.applyGravity();
-	 * }
-	 * ...
+	 * 		if (this.isTouchingWater() && this.getFluidHeight(FluidTags.WATER) > 0.10000000149011612) {
+	 * 			this.applyWaterBuoyancy();
+	 * 		} else if (this.isInLava() && this.getFluidHeight(FluidTags.LAVA) > 0.10000000149011612) {
+	 * 			this.applyLavaBuoyancy();
+	 * 		} else {
+	 * 			this.applyGravity();
+	 * 		}
+	 * 	...
 	 */
 	@Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;isInWater()Z"))
 	private void moveToTarget(CallbackInfo info) {
@@ -98,17 +98,14 @@ public abstract class ItemEntityMixin extends Entity implements TraceableEntity 
 			this.updateTarget();
 		}
 
-		double currentPickupDistance = this.getPickupDistance();
-		double currentSquaredPickupDistance = this.getSquaredPickupDistance();
-
 		// add to velocity depending on how far the items are away -> increased velocity, the closer the items get#
 		// Following logic was taken from ExperienceOrbEntity and slightly modified.
 		if (this.target != null) {
 			Vec3 targetEyeVector = new Vec3(this.target.getX() - thisObj.getX(), this.target.getY() + this.target.getEyeHeight() / 2.0 - thisObj.getY(), this.target.getZ() - thisObj.getZ());
 			double squaredTargetEyeDistance = targetEyeVector.lengthSqr();
 
-			if (squaredTargetEyeDistance < currentSquaredPickupDistance) {
-				double relativeTargetEyeDistance = 1.0 - Math.sqrt(squaredTargetEyeDistance) / currentPickupDistance;
+			if (squaredTargetEyeDistance < this.getSquaredPickupDistance()) {
+				double relativeTargetEyeDistance = 1.0 - Math.sqrt(squaredTargetEyeDistance) / this.getPickupDistance();
 				thisObj.setDeltaMovement(thisObj.getDeltaMovement().add(targetEyeVector.normalize().scale(relativeTargetEyeDistance * relativeTargetEyeDistance * 0.1)));
 			}
 		}
