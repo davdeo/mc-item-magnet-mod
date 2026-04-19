@@ -10,17 +10,10 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 
-import net.davdeo.itemmagnetmod.config.ModConfig;
-
 public class ModItems {
     private ModItems() {
         super();
     }
-
-    private static final int MAGNET_DURABILITY = ModConfig.magnetDurability;
-    private static final int MAGNET_CORE_STACK = ModConfig.brokenMagnetStack;
-    private static final int BROKEN_MAGNET_STACK = ModConfig.magnetCoreStack;
-
 
     public static final ResourceKey<Item> ITEM_MAGNET_KEY = ResourceKey.create(
             Registries.ITEM,
@@ -29,7 +22,7 @@ public class ModItems {
             new ItemMagnetItem(
                     new Item.Properties()
                             .setId(ITEM_MAGNET_KEY)
-                            .durability(MAGNET_DURABILITY)
+                            .durability(1024)
                             .component(ModComponents.ITEM_MAGNET_ITEM_IS_ACTIVE_COMPONENT, false)
             ),
             ITEM_MAGNET_KEY
@@ -42,7 +35,7 @@ public class ModItems {
             new Item(
                     new Item.Properties()
                             .setId(ITEM_MAGNET_BROKEN_KEY)
-                            .stacksTo(BROKEN_MAGNET_STACK)
+                            .stacksTo(1)
             ),
             ITEM_MAGNET_BROKEN_KEY
     );
@@ -54,7 +47,7 @@ public class ModItems {
             new Item(
                     new Item.Properties()
                             .setId(MAGNET_CORE_KEY)
-                            .stacksTo(MAGNET_CORE_STACK)
+                            .stacksTo(1)
             ),
             MAGNET_CORE_KEY
     );

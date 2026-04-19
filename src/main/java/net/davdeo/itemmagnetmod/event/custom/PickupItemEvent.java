@@ -12,7 +12,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.davdeo.itemmagnetmod.config.ModConfig;
 
 public interface PickupItemEvent {
     Event<PickupItemEvent> EVENT = EventFactory.createArrayBacked(PickupItemEvent.class,
@@ -32,11 +31,6 @@ public interface PickupItemEvent {
 
     static InteractionResult onPickupEvent(Player player, int pickedUpItemsCount) {
         ItemMagnetMod.LOGGER.debug("On pickup event");
-
-        if (ModConfig.isIndestructible) {
-            return InteractionResult.PASS;
-        }
-
         int activeMagnetInventoryIndex = ItemMagnetHelper.getFirstActiveMagnetInventoryIndex(player);
 
         if (activeMagnetInventoryIndex == -1) {

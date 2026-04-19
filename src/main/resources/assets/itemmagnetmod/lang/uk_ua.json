@@ -2,43 +2,10 @@
   "item.itemmagnetmod.item_magnet": "Магніт",
   "item.itemmagnetmod.item_magnet.active": "Увімкнений",
   "item.itemmagnetmod.item_magnet.not_active": "Вимкнений",
+
   "item.itemmagnetmod.item_magnet_broken": "Зламаний магніт",
   "item.itemmagnetmod.magnet_core": "Магнітне ядро",
 
-  "itemgroup.item_magnet": "Item Magnet Mod",
-
-
-  "title.itemmagnetmod.config": "Налаштування Item Magnet Mod",
-  "category.itemmagnetmod.general": "Загальні",
-  "category.itemmagnetmod.world_gen": "Генерація світу",
-
-  "option.itemmagnetmod.magnet_distance": "Дальність магніту",
-  "tooltip.itemmagnetmod.magnet_distance": "Керує тим, як далеко діє магніт.",
-
-  "option.itemmagnetmod.magnet_durability": "Міцність магніту",
-  "tooltip.itemmagnetmod.magnet_durability": "Керує тим, яка міцність у магніту.\nПотрібен перезапуск.",
-  
-  "option.itemmagnetmod.broken_magnet_stack": "Стіс зламаного магніту",
-  "tooltip.itemmagnetmod.broken_magnet_stack": "Керує тим, скільки предметів в стосі зламаного магніту.\nПотрібен перезапуск.",
-
-  "option.itemmagnetmod.magnet_core_stack": "Стіс магнітного ядра",
-  "tooltip.itemmagnetmod.magnet_core_stack": "Керує тим, скільки предметів в стосі магнітного ядра.\nПотрібен перезапуск.",
-
-  "option.itemmagnetmod.indestructible": "Магніт незнищений",
-  "tooltip.itemmagnetmod.indestructible": "Керує тим, чи ламається магніт при підбиранні предметів.",
-
-  "option.itemmagnetmod.core_in_bastion": "Магнітне ядро в залишках бастіону",
-  "tooltip.itemmagnetmod.core_in_bastion": "Керує тим, чи можна знайти магнітне ядро в залишках бастіонах.\nПотрібен перезапуск.",
-
-  "option.itemmagnetmod.core_in_ancient_city": "Магнітне ядро в стародавньому місті",
-  "tooltip.itemmagnetmod.core_in_ancient_city": "Керує тим, чи можна знайти магнітне ядро в стародавніх містах.\nПотрібен перезапуск.",
-
-  "option.itemmagnetmod.core_in_end_city": "Магнітне ядро в місті Енду",
-  "tooltip.itemmagnetmod.core_in_end_city": "Керує тим, чи можна знайти магнітне ядро в містах Енду.\nПотрібен перезапуск.",
-
-  "option.itemmagnetmod.core_in_stronghold_library": "Магнітне ядро в бібліотеці цитаделі",
-  "tooltip.itemmagnetmod.core_in_stronghold_library": "Керує тим, чи можна знайти магнітне ядро в бібліотеках цитаделі.\nПотрібен перезапуск.",
-
-
-  "modmenu.descriptionTranslation.itemmagnetmod": "Цей мод додає в гру магніт для предметів. Його можна вмикати та вимикати, також він втрачає міцність за кожен підібраний предмет."
+  "itemgroup.item_magnet": "davdeo's Item Magnet",
+  "modmenu.descriptionTranslation.itemmagnetmod": "Цей мод додає в гру магніт для предметів. Його можна вмикати та вимикати, токож він втрачає міцність за кожен підібраний предмет."
 }
