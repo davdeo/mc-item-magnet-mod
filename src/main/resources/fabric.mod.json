@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "itemmagnetmod",
-	"version": "${2.10}",
+	"version": "${version}",
 	"name": "Item Magnet Mod",
 	"description": "This mod adds an item magnet to the game. It can be activated / deactivated and looses durability for each item picked up.",
 	"authors": [
@@ -27,6 +27,9 @@
 		],
 		"fabric-datagen": [
 			"net.davdeo.itemmagnetmod.ItemMagnetModDataGenerator"
+		],
+		"modmenu": [
+			"net.davdeo.itemmagnetmod.config.ModMenuIntegration"
 		]
 	},
 	"mixins": [
@@ -39,7 +42,8 @@
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
+		"cloth-config": "*",
+		"modmenu": "*"
 	},
 	"accessWidener": "itemmagnetmod.accesswidener"
 }

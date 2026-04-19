@@ -21,7 +21,9 @@ the release.
   * minecraft_version
   * loader_version
   * fabric_version
-  * loom_version
+* This accordance to the latest versions of the mod for the current game
+  * cloth-config version
+  * mod-menu version
 * And this, if the game uses a newer version of Java
   * java_version
 ```
