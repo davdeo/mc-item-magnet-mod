@@ -19,8 +19,7 @@
   ],
   "rewards": {
     "recipes": [
-      "itemmagnetmod:magnet_core_from_blasting_broken_magnet",
-      "itemmagnetmod:magnet_core_from_smelting_broken_magnet"
+      "itemmagnetmod:magnet_core_smithing"
     ]
   }
 }
