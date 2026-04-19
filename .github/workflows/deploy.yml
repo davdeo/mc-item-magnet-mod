@@ -127,7 +127,7 @@ jobs:
         with:
           # Handle platform-specific parameters
           github-tag: "v${{env.VERSION}}-${{env.MINECRAFT_VERSION}}"
-          github-token: "${{env.GITHUB_TOKEN}}"
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
           github-generate-changelog: true
 
           name: "${{env.RELEASE_NAME}}"
