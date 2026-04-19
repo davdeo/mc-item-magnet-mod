@@ -18,15 +18,14 @@ the release.
 
 # Update Guide
 * Update gradle.properties in accordance to: https://fabricmc.net/develop/
-    * minecraft_version
-    * loader_version
-    * fabric_version
-  * This accordance to the latest versions of the mod for the current game
-    * cloth_config_version
-    * modmenu_versio
-  * And this, if the game uses a newer version of Java
-    * java_version
-* Update Loom version in build.gradle
+  * minecraft_version
+  * loader_version
+  * fabric_version
+* This accordance to the latest versions of the mod for the current game
+  * cloth-config version
+  * mod-menu version
+* And this, if the game uses a newer version of Java
+  * java_version
 ```
 plugins {
     	id 'net.fabricmc.fabric-loom' version 'x.xx-SNAPSHOT'
