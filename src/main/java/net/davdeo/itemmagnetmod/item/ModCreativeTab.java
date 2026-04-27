@@ -14,7 +14,7 @@ public class ModCreativeTab {
         super();
     }
 
-    public static final CreativeModeTab ITEM_MAGNET_GROUP = Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB,
+    public static final CreativeModeTab ITEM_MAGNET_TAB = Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB,
             Identifier.fromNamespaceAndPath(ItemMagnetMod.MOD_ID, "item_magnet"),
             FabricCreativeModeTab.builder().title(Component.translatable("itemgroup.item_magnet"))
                     .icon(() -> new ItemStack(ModItems.ITEM_MAGNET)).displayItems((displayContext, entries) -> {
@@ -23,7 +23,7 @@ public class ModCreativeTab {
                         entries.accept(ModItems.MAGNET_CORE);
                     }).build());
 
-    public static void registerItemGroups() {
-        ItemMagnetMod.LOGGER.info("Registering item groups for: " + ItemMagnetMod.MOD_ID);
+    public static void registerItemTabs() {
+        ItemMagnetMod.LOGGER.info("Registering item tab for: " + ItemMagnetMod.MOD_ID);
     }
 }
