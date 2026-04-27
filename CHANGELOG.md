@@ -1,3 +1,6 @@
+# v3.1
+* Update to minecraft version 26.2
+  
 # v3.0
 * Update to minecraft version 26.1
 * Added config file and screen, can be opened using Mod Menu. _**Optional**_: Install [Cloth Config API](https://modrinth.com/mod/cloth-config) and [Mod Menu](https://modrinth.com/mod/modmenu)
