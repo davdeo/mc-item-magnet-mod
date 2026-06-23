@@ -20,7 +20,7 @@ public class ItemMagnetMod implements ModInitializer {
 		ModConfig.load();
 
 		ModItems.registerModItems();
-		ModCreativeTab.registerItemGroups();
+		ModCreativeTab.registerItemTabs();
 		ModComponents.registerComponents();
 
 		ModEvents.registerModEvents();

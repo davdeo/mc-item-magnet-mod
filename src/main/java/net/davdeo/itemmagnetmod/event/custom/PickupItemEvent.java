@@ -5,7 +5,7 @@ import net.davdeo.itemmagnetmod.item.ModItems;
 import net.davdeo.itemmagnetmod.util.ItemMagnetHelper;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
